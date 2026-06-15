@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Modern full-stack developer and AI/ML Python programmer portfolio.">
+  <title>Erblin Limani | Full-Stack Developer & AI/ML Programmer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas class="neural-canvas" id="neuralCanvas" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="Erblin Limani home">
+        <span class="brand-mark">EL</span>
+        <span>Erblin Limani</span>
+      </a>
+
+      <div class="nav-actions">
+        <div class="language-switcher" aria-label="Choose language">
+          <button class="language-btn active" type="button" data-lang="en" aria-label="Switch to English">EN</button>
+          <button class="language-btn" type="button" data-lang="sq" aria-label="Switch to Albanian">AL</button>
+          <button class="language-btn" type="button" data-lang="de" aria-label="Switch to German">DE</button>
+        </div>
+
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-band" id="home">
+      <div class="hero-content reveal">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Full-stack systems, intelligent tools, production-ready code</p>
+        <h1>Erblin Limani</h1>
+        <p class="hero-title" data-i18n="hero.title">Full-Stack Developer | AI & Machine Learning Programmer</p>
+        <p class="hero-intro" data-i18n="hero.intro">
+          I build high-performance web applications, reliable backend systems, AI-powered tools,
+          and machine learning solutions that turn complex ideas into polished digital products.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects" data-i18n="hero.projectsButton">View Projects</a>
+          <a class="btn btn-secondary" href="#contact" data-i18n="hero.contactButton">Contact Me</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel reveal" aria-label="Developer highlights">
+        <div class="terminal-card">
+          <div class="terminal-bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="terminal-body">
+            <p><span class="prompt">$</span> stack.profile()</p>
+            <p class="code-line" data-i18n="terminal.frontend">Frontend: HTML, CSS, JavaScript</p>
+            <p class="code-line" data-i18n="terminal.backend">Backend: PHP, SQL, MySQL</p>
+            <p class="code-line" data-i18n="terminal.ai">AI/ML: Python, automation, models</p>
+            <p><span class="prompt">$</span> status: <span class="success" data-i18n="terminal.status">building the future</span></p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+        <h2 data-i18n="about.heading">Developer With A Product Mindset</h2>
+      </div>
+      <div class="about-grid">
+        <div class="glass-card about-copy reveal">
+          <p data-i18n="about.paragraphOne">
+            I am a full-stack developer and AI/ML Python programmer based in Prishtina, Kosovo.
+            I focus on building scalable, practical, and elegant software across responsive
+            interfaces, backend logic, database architecture, automation tools, and intelligent
+            systems powered by data.
+          </p>
+          <p data-i18n="about.paragraphTwo">
+            I am currently studying AI and Programming at Kolegji AAB, after completing three
+            years at the professional school IAAP "Jonuz Zejnullahu" in Viti. With five years
+            of programming experience and skills across HTML, CSS, JavaScript, PHP, SQL, MySQL,
+            C++, Java, Python, AI, and Machine Learning, I bring both engineering depth and
+            creative problem-solving to every project.
+          </p>
+        </div>
+        <div class="stats-grid reveal" aria-label="Portfolio metrics">
+          <div class="stat-card">
+            <strong>5</strong>
+            <span data-i18n="stats.programming">Years Programming</span>
+          </div>
+          <div class="stat-card">
+            <strong>AAB</strong>
+            <span data-i18n="stats.aab">AI & Programming</span>
+          </div>
+          <div class="stat-card">
+            <strong>3</strong>
+            <span data-i18n="stats.school">Years Professional School</span>
+          </div>
+          <div class="stat-card">
+            <strong>KS</strong>
+            <span data-i18n="stats.location">Prishtina, Kosovo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="skills.eyebrow">Skills</p>
+        <h2 data-i18n="skills.heading">Modern Stack For Web, Backend, And AI</h2>
+      </div>
+      <div class="card-grid skills-grid">
+        <article class="glass-card reveal">
+          <h3>Frontend</h3>
+          <div class="tag-list">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+        </article>
+        <article class="glass-card reveal">
+          <h3>Backend</h3>
+          <div class="tag-list">
+            <span>PHP</span>
+            <span>SQL</span>
+            <span>MySQL</span>
+          </div>
+        </article>
+        <article class="glass-card reveal">
+          <h3 data-i18n="skills.programming">Programming</h3>
+          <div class="tag-list">
+            <span>C++</span>
+            <span>Java</span>
+            <span>Python</span>
+          </div>
+        </article>
+        <article class="glass-card reveal">
+          <h3>AI/ML</h3>
+          <div class="tag-list">
+            <span data-i18n="skills.machineLearning">Machine Learning</span>
+            <span data-i18n="skills.aiAutomation">AI Automation</span>
+            <span data-i18n="skills.dataProcessing">Data Processing</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="projects.eyebrow">Projects</p>
+        <h2 data-i18n="projects.heading">Featured Builds</h2>
+      </div>
+      <div class="card-grid project-grid">
+        <article class="glass-card project-card reveal">
+          <div class="project-icon">AI</div>
+          <h3 data-i18n="projects.chatbot.title">AI Chatbot</h3>
+          <p data-i18n="projects.chatbot.description">Conversational assistant with intent handling, context-aware responses, and automation-ready integrations.</p>
+          <div class="tech-stack">Python &middot; JavaScript &middot; AI APIs</div>
+          <a class="text-button" href="#contact" data-i18n="projects.viewButton">View Project</a>
+        </article>
+        <article class="glass-card project-card reveal">
+          <div class="project-icon">DB</div>
+          <h3 data-i18n="projects.dashboard.title">Full-Stack Dashboard</h3>
+          <p data-i18n="projects.dashboard.description">Responsive analytics dashboard with secure backend logic, dynamic data views, and database reporting.</p>
+          <div class="tech-stack">HTML &middot; CSS &middot; PHP &middot; MySQL</div>
+          <a class="text-button" href="#contact" data-i18n="projects.viewButton">View Project</a>
+        </article>
+        <article class="glass-card project-card reveal">
+          <div class="project-icon">EC</div>
+          <h3 data-i18n="projects.ecommerce.title">E-commerce Website</h3>
+          <p data-i18n="projects.ecommerce.description">Online storefront with product browsing, cart flow, user management, and clean purchase experience.</p>
+          <div class="tech-stack">JavaScript &middot; PHP &middot; SQL</div>
+          <a class="text-button" href="#contact" data-i18n="projects.viewButton">View Project</a>
+        </article>
+        <article class="glass-card project-card reveal">
+          <div class="project-icon">ML</div>
+          <h3 data-i18n="projects.prediction.title">Machine Learning Prediction App</h3>
+          <p data-i18n="projects.prediction.description">Prediction interface using trained models, data processing pipelines, and clear result presentation.</p>
+          <div class="tech-stack">Python &middot; Machine Learning &middot; Data Processing</div>
+          <a class="text-button" href="#contact" data-i18n="projects.viewButton">View Project</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="services.eyebrow">Services</p>
+        <h2 data-i18n="services.heading">Technical Services</h2>
+      </div>
+      <div class="services-list">
+        <article class="service-item reveal">
+          <span>01</span>
+          <h3 data-i18n="services.web.title">Web Development</h3>
+          <p data-i18n="services.web.description">Responsive, polished websites and web applications built for performance and usability.</p>
+        </article>
+        <article class="service-item reveal">
+          <span>02</span>
+          <h3 data-i18n="services.backend.title">Backend Development</h3>
+          <p data-i18n="services.backend.description">Server-side systems, authentication flows, APIs, and business logic that scale cleanly.</p>
+        </article>
+        <article class="service-item reveal">
+          <span>03</span>
+          <h3 data-i18n="services.automation.title">AI Automation</h3>
+          <p data-i18n="services.automation.description">Smart workflows that reduce repetitive work and connect AI tools to real operations.</p>
+        </article>
+        <article class="service-item reveal">
+          <span>04</span>
+          <h3 data-i18n="services.ml.title">Machine Learning Models</h3>
+          <p data-i18n="services.ml.description">Data preparation, model development, evaluation, and prediction-focused applications.</p>
+        </article>
+        <article class="service-item reveal">
+          <span>05</span>
+          <h3 data-i18n="services.database.title">Database Design</h3>
+          <p data-i18n="services.database.description">Structured SQL and MySQL database design for reliable storage, querying, and reporting.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+        <h2 data-i18n="contact.heading">Let's Build Something Intelligent</h2>
+      </div>
+      <div class="contact-grid">
+        <form class="glass-card contact-form reveal" action="#" method="post">
+          <label for="name" data-i18n="contact.nameLabel">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" data-i18n-placeholder="contact.namePlaceholder" required>
+
+          <label for="email" data-i18n="contact.emailLabel">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" data-i18n-placeholder="contact.emailPlaceholder" required>
+
+          <label for="message" data-i18n="contact.messageLabel">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Tell me about your project" data-i18n-placeholder="contact.messagePlaceholder" required></textarea>
+
+          <button class="btn btn-primary" type="submit" data-i18n="contact.sendButton">Send Message</button>
+        </form>
+
+        <div class="contact-panel reveal">
+          <p data-i18n="contact.panelText">
+            Available for web applications, backend systems, automation workflows, machine learning
+            tools, and custom AI-powered products.
+          </p>
+          <div class="info-list" aria-label="Personal details">
+            <div>
+              <span data-i18n="contact.locationLabel">Location</span>
+              <strong>Prishtina, Kosovo</strong>
+            </div>
+            <div>
+              <span data-i18n="contact.educationLabel">Education</span>
+              <strong data-i18n="contact.educationValue">Kolegji AAB, AI & Programming</strong>
+            </div>
+            <div>
+              <span data-i18n="contact.languagesLabel">Languages</span>
+              <strong data-i18n="contact.languagesValue">Albanian, English, German</strong>
+            </div>
+          </div>
+          <div class="social-links" aria-label="Social links">
+            <a href="https://github.com/erblin307" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub</a>
+            <a href="https://www.linkedin.com/in/erblin-limani-593b2a316" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn</a>
+            <a href="mailto:limanierblin561@gmail.com" aria-label="Send email">Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p data-i18n="footer.copy">&copy; 2026 Erblin Limani. Full-Stack Developer & AI/ML Programmer.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

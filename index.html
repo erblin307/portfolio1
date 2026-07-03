@@ -3,282 +3,504 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Modern full-stack developer and AI/ML Python programmer portfolio.">
-  <title>Erblin Limani | Full-Stack Developer & AI/ML Programmer</title>
+  <title>Echonix IT | Intelligent Software, AI Automation & Cybersecurity</title>
+  <meta name="description" content="Echonix IT builds premium software, AI automation, web platforms, mobile applications, cybersecurity solutions, UI/UX systems, SEO, and IT consulting for Europe and the United States.">
+  <meta name="keywords" content="Echonix IT, software engineering, AI automation, web development, cybersecurity, mobile apps, UI UX design, IT consulting, SEO">
+  <meta name="author" content="Echonix IT">
+  <link rel="canonical" href="https://echonixit.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Echonix IT | Intelligent Solutions. Limitless Impact.">
+  <meta property="og:description" content="Premium software engineering, AI automation, web development, mobile apps, cybersecurity, UI/UX design, SEO, and IT consulting.">
+  <meta property="og:url" content="https://echonixit.com/">
+  <meta property="og:site_name" content="Echonix IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Echonix IT | Intelligent Solutions. Limitless Impact.">
+  <meta name="twitter:description" content="Enterprise-grade software, AI, automation, cybersecurity, and digital product engineering.">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Echonix IT",
+      "description": "Software engineering, artificial intelligence, custom software, web development, AI automation, cybersecurity, mobile applications, UI/UX design, IT consulting, and SEO.",
+      "email": "limanierblin561@gmail.com",
+      "telephone": "+38344307469",
+      "areaServed": ["Europe", "United States"],
+      "url": "https://echonixit.com/",
+      "sameAs": [
+        "https://github.com/erblin307",
+        "https://www.linkedin.com/in/erblin-limani-593b2a316"
+      ]
+    }
+  </script>
 </head>
 <body>
-  <canvas class="neural-canvas" id="neuralCanvas" aria-hidden="true"></canvas>
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-mark">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <canvas class="signal-canvas" id="signalCanvas" aria-hidden="true"></canvas>
+
+  <button class="menu-toggle floating-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+    <span></span><span></span><span></span>
+  </button>
 
   <header class="site-header">
     <nav class="navbar" aria-label="Primary navigation">
-      <a class="brand" href="#home" aria-label="Erblin Limani home">
-        <span class="brand-mark">EL</span>
-        <span>Erblin Limani</span>
+      <a class="brand" href="#home" aria-label="Echonix IT home">
+        <span class="logo-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        <span class="brand-text">
+          <strong>Echonix IT</strong>
+          <small data-i18n="brand.tagline">Intelligent Solutions</small>
+        </span>
       </a>
-
-      <div class="nav-actions">
-        <div class="language-switcher" aria-label="Choose language">
-          <button class="language-btn active" type="button" data-lang="en" aria-label="Switch to English">EN</button>
-          <button class="language-btn" type="button" data-lang="sq" aria-label="Switch to Albanian">AL</button>
-          <button class="language-btn" type="button" data-lang="de" aria-label="Switch to German">DE</button>
-        </div>
-
-        <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
 
       <ul class="nav-menu" id="navMenu">
         <li><a href="#about" data-i18n="nav.about">About</a></li>
-        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
-        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
         <li><a href="#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
+        <li><a href="#case-studies" data-i18n="nav.caseStudies">Case Studies</a></li>
+        <li><a href="#technologies" data-i18n="nav.technologies">Technologies</a></li>
+        <li><a href="#industries" data-i18n="nav.industries">Industries</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
+
+      <div class="nav-actions">
+        <div class="language-switcher" aria-label="Choose language">
+          <button class="language-btn active" type="button" data-lang="en" aria-label="English">EN</button>
+          <button class="language-btn" type="button" data-lang="de" aria-label="German">DE</button>
+          <button class="language-btn" type="button" data-lang="sq" aria-label="Albanian">AL</button>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
   </header>
 
   <main>
-    <section class="hero section-band" id="home">
-      <div class="hero-content reveal">
-        <p class="eyebrow" data-i18n="hero.eyebrow">Full-stack systems, intelligent tools, production-ready code</p>
-        <h1>Erblin Limani</h1>
-        <p class="hero-title" data-i18n="hero.title">Full-Stack Developer | AI & Machine Learning Programmer</p>
-        <p class="hero-intro" data-i18n="hero.intro">
-          I build high-performance web applications, reliable backend systems, AI-powered tools,
-          and machine learning solutions that turn complex ideas into polished digital products.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects" data-i18n="hero.projectsButton">View Projects</a>
-          <a class="btn btn-secondary" href="#contact" data-i18n="hero.contactButton">Contact Me</a>
-        </div>
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="wave-grid"></div>
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
       </div>
-
-      <aside class="hero-panel reveal" aria-label="Developer highlights">
-        <div class="terminal-card">
-          <div class="terminal-bar">
-            <span></span>
-            <span></span>
-            <span></span>
+      <div class="hero-inner">
+        <div class="hero-copy reveal">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Enterprise software studio for intelligent systems</p>
+          <h1 data-i18n="hero.heading">Intelligent Solutions. Limitless Impact.</h1>
+          <p class="hero-text" data-i18n="hero.text">
+            Echonix IT engineers secure software, AI automation, custom web platforms, mobile apps, and digital systems for ambitious teams across Europe and the United States.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact" data-i18n="hero.primary">Start a Project</a>
+            <a class="btn btn-secondary" href="#portfolio" data-i18n="hero.secondary">Explore Work</a>
           </div>
-          <div class="terminal-body">
-            <p><span class="prompt">$</span> stack.profile()</p>
-            <p class="code-line" data-i18n="terminal.frontend">Frontend: HTML, CSS, JavaScript</p>
-            <p class="code-line" data-i18n="terminal.backend">Backend: PHP, SQL, MySQL</p>
-            <p class="code-line" data-i18n="terminal.ai">AI/ML: Python, automation, models</p>
-            <p><span class="prompt">$</span> status: <span class="success" data-i18n="terminal.status">building the future</span></p>
+          <div class="trust-row" aria-label="Core capabilities">
+            <span>AI</span>
+            <span>Software</span>
+            <span>Security</span>
+            <span>UX</span>
+            <span>SEO</span>
           </div>
         </div>
-      </aside>
-    </section>
 
-    <section class="section about" id="about">
-      <div class="section-heading reveal">
-        <p class="eyebrow" data-i18n="about.eyebrow">About</p>
-        <h2 data-i18n="about.heading">Developer With A Product Mindset</h2>
-      </div>
-      <div class="about-grid">
-        <div class="glass-card about-copy reveal">
-          <p data-i18n="about.paragraphOne">
-            I am a full-stack developer and AI/ML Python programmer based in Prishtina, Kosovo.
-            I focus on building scalable, practical, and elegant software across responsive
-            interfaces, backend logic, database architecture, automation tools, and intelligent
-            systems powered by data.
-          </p>
-          <p data-i18n="about.paragraphTwo">
-            I am currently studying AI and Programming at Kolegji AAB, after completing three
-            years at the professional school IAAP "Jonuz Zejnullahu" in Viti. With five years
-            of programming experience and skills across HTML, CSS, JavaScript, PHP, SQL, MySQL,
-            C++, Java, Python, AI, and Machine Learning, I bring both engineering depth and
-            creative problem-solving to every project.
-          </p>
-        </div>
-        <div class="stats-grid reveal" aria-label="Portfolio metrics">
-          <div class="stat-card">
-            <strong>5</strong>
-            <span data-i18n="stats.programming">Years Programming</span>
+        <div class="hero-visual reveal" aria-label="Technology illustration">
+          <div class="system-card system-card-main">
+            <div class="card-top">
+              <span></span><span></span><span></span>
+              <small>ECHONIX CORE</small>
+            </div>
+            <div class="orbit-system">
+              <div class="core-node">
+                <span class="logo-mark mini" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+              </div>
+              <span class="orbit-node node-1">AI</span>
+              <span class="orbit-node node-2">API</span>
+              <span class="orbit-node node-3">UX</span>
+              <span class="orbit-node node-4">SEC</span>
+            </div>
           </div>
-          <div class="stat-card">
-            <strong>AAB</strong>
-            <span data-i18n="stats.aab">AI & Programming</span>
+          <div class="metric-tile tile-a">
+            <strong>9</strong>
+            <span data-i18n="hero.metricServices">Service Lines</span>
           </div>
-          <div class="stat-card">
+          <div class="metric-tile tile-b">
             <strong>3</strong>
-            <span data-i18n="stats.school">Years Professional School</span>
-          </div>
-          <div class="stat-card">
-            <strong>KS</strong>
-            <span data-i18n="stats.location">Prishtina, Kosovo</span>
+            <span data-i18n="hero.metricMarkets">Languages</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="skills">
-      <div class="section-heading reveal">
-        <p class="eyebrow" data-i18n="skills.eyebrow">Skills</p>
-        <h2 data-i18n="skills.heading">Modern Stack For Web, Backend, And AI</h2>
-      </div>
-      <div class="card-grid skills-grid">
-        <article class="glass-card reveal">
-          <h3>Frontend</h3>
-          <div class="tag-list">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-          </div>
+    <section class="section stats-section" aria-label="Company statistics">
+      <div class="stats-grid reveal">
+        <article>
+          <strong data-counter="10">0</strong>
+          <span data-i18n="stats.capabilities">Digital capabilities</span>
         </article>
-        <article class="glass-card reveal">
-          <h3>Backend</h3>
-          <div class="tag-list">
-            <span>PHP</span>
-            <span>SQL</span>
-            <span>MySQL</span>
-          </div>
+        <article>
+          <strong data-counter="2">0</strong>
+          <span data-i18n="stats.markets">Primary markets</span>
         </article>
-        <article class="glass-card reveal">
-          <h3 data-i18n="skills.programming">Programming</h3>
-          <div class="tag-list">
-            <span>C++</span>
-            <span>Java</span>
-            <span>Python</span>
-          </div>
+        <article>
+          <strong data-counter="24">0</strong>
+          <span data-i18n="stats.delivery">Responsive delivery</span>
         </article>
-        <article class="glass-card reveal">
-          <h3>AI/ML</h3>
-          <div class="tag-list">
-            <span data-i18n="skills.machineLearning">Machine Learning</span>
-            <span data-i18n="skills.aiAutomation">AI Automation</span>
-            <span data-i18n="skills.dataProcessing">Data Processing</span>
-          </div>
+        <article>
+          <strong data-counter="100">0</strong>
+          <span data-i18n="stats.focus">Client-focused strategy</span>
         </article>
       </div>
     </section>
 
-    <section class="section" id="projects">
-      <div class="section-heading reveal">
-        <p class="eyebrow" data-i18n="projects.eyebrow">Projects</p>
-        <h2 data-i18n="projects.heading">Featured Builds</h2>
+    <section class="section split-section" id="about">
+      <div class="section-label reveal">
+        <p class="eyebrow" data-i18n="about.eyebrow">About Echonix IT</p>
+        <h2 data-i18n="about.heading">A modern technology partner for software, AI, and digital growth.</h2>
       </div>
-      <div class="card-grid project-grid">
-        <article class="glass-card project-card reveal">
-          <div class="project-icon">AI</div>
-          <h3 data-i18n="projects.chatbot.title">AI Chatbot</h3>
-          <p data-i18n="projects.chatbot.description">Conversational assistant with intent handling, context-aware responses, and automation-ready integrations.</p>
-          <div class="tech-stack">Python &middot; JavaScript &middot; AI APIs</div>
-          <a class="text-button" href="#contact" data-i18n="projects.viewButton">View Project</a>
-        </article>
-        <article class="glass-card project-card reveal">
-          <div class="project-icon">DB</div>
-          <h3 data-i18n="projects.dashboard.title">Full-Stack Dashboard</h3>
-          <p data-i18n="projects.dashboard.description">Responsive analytics dashboard with secure backend logic, dynamic data views, and database reporting.</p>
-          <div class="tech-stack">HTML &middot; CSS &middot; PHP &middot; MySQL</div>
-          <a class="text-button" href="#contact" data-i18n="projects.viewButton">View Project</a>
-        </article>
-        <article class="glass-card project-card reveal">
-          <div class="project-icon">EC</div>
-          <h3 data-i18n="projects.ecommerce.title">E-commerce Website</h3>
-          <p data-i18n="projects.ecommerce.description">Online storefront with product browsing, cart flow, user management, and clean purchase experience.</p>
-          <div class="tech-stack">JavaScript &middot; PHP &middot; SQL</div>
-          <a class="text-button" href="#contact" data-i18n="projects.viewButton">View Project</a>
-        </article>
-        <article class="glass-card project-card reveal">
-          <div class="project-icon">ML</div>
-          <h3 data-i18n="projects.prediction.title">Machine Learning Prediction App</h3>
-          <p data-i18n="projects.prediction.description">Prediction interface using trained models, data processing pipelines, and clear result presentation.</p>
-          <div class="tech-stack">Python &middot; Machine Learning &middot; Data Processing</div>
-          <a class="text-button" href="#contact" data-i18n="projects.viewButton">View Project</a>
-        </article>
+      <div class="glass-panel about-panel reveal">
+        <p data-i18n="about.text">
+          Echonix IT combines engineering discipline, intelligent automation, and premium design to build secure digital products that feel fast, reliable, and ready for scale.
+        </p>
+        <div class="about-list">
+          <span data-i18n="about.pointOne">Built for startups, businesses, and enterprise teams.</span>
+          <span data-i18n="about.pointTwo">Serving Europe and the United States.</span>
+          <span data-i18n="about.pointThree">English, German, and Albanian communication.</span>
+        </div>
       </div>
     </section>
 
     <section class="section" id="services">
       <div class="section-heading reveal">
         <p class="eyebrow" data-i18n="services.eyebrow">Services</p>
-        <h2 data-i18n="services.heading">Technical Services</h2>
+        <h2 data-i18n="services.heading">Enterprise-grade digital services, designed as one connected system.</h2>
       </div>
-      <div class="services-list">
-        <article class="service-item reveal">
-          <span>01</span>
+      <div class="service-grid">
+        <article class="service-card reveal">
+          <div class="icon-line">01</div>
+          <h3 data-i18n="services.custom.title">Custom Software</h3>
+          <p data-i18n="services.custom.text">Tailored platforms, portals, dashboards, and business systems engineered around your workflows.</p>
+          <ul class="service-points">
+            <li><span data-i18n="serviceMeta.benefit">Benefit</span><strong data-i18n="services.custom.benefit">Architecture, automation, and scalable delivery</strong></li>
+            <li><span data-i18n="serviceMeta.technology">Technology</span><strong>React, Node.js, SQL, API systems</strong></li>
+            <li><span data-i18n="serviceMeta.process">Process</span><strong>Discovery, architecture, build, optimization</strong></li>
+            <li><span data-i18n="serviceMeta.industries">Industries</span><strong>SaaS, operations, internal platforms</strong></li>
+          </ul>
+          <a class="service-cta" href="#contact" data-i18n="serviceMeta.cta">Discuss this service</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="icon-line">02</div>
           <h3 data-i18n="services.web.title">Web Development</h3>
-          <p data-i18n="services.web.description">Responsive, polished websites and web applications built for performance and usability.</p>
+          <p data-i18n="services.web.text">High-performance websites and web applications with premium UI, SEO structure, and conversion focus.</p>
+          <ul class="service-points">
+            <li><span data-i18n="serviceMeta.benefit">Benefit</span><strong data-i18n="services.web.benefit">Fast, responsive, accessible interfaces</strong></li>
+            <li><span data-i18n="serviceMeta.technology">Technology</span><strong>HTML, CSS, JavaScript, PHP, MySQL</strong></li>
+            <li><span data-i18n="serviceMeta.process">Process</span><strong>UX structure, frontend, backend, launch</strong></li>
+            <li><span data-i18n="serviceMeta.industries">Industries</span><strong>Corporate, services, e-commerce</strong></li>
+          </ul>
+          <a class="service-cta" href="#contact" data-i18n="serviceMeta.cta">Discuss this service</a>
         </article>
-        <article class="service-item reveal">
-          <span>02</span>
-          <h3 data-i18n="services.backend.title">Backend Development</h3>
-          <p data-i18n="services.backend.description">Server-side systems, authentication flows, APIs, and business logic that scale cleanly.</p>
+        <article class="service-card reveal">
+          <div class="icon-line">03</div>
+          <h3 data-i18n="services.ai.title">AI Solutions</h3>
+          <p data-i18n="services.ai.text">AI assistants, prediction tools, data pipelines, and smart products powered by practical machine learning.</p>
+          <ul class="service-points">
+            <li><span data-i18n="serviceMeta.benefit">Benefit</span><strong data-i18n="services.ai.benefit">Models, data processing, and intelligent UX</strong></li>
+            <li><span data-i18n="serviceMeta.technology">Technology</span><strong>Python, ML, automation, AI APIs</strong></li>
+            <li><span data-i18n="serviceMeta.process">Process</span><strong>Data review, model design, testing, deployment</strong></li>
+            <li><span data-i18n="serviceMeta.industries">Industries</span><strong>Support, analytics, operations</strong></li>
+          </ul>
+          <a class="service-cta" href="#contact" data-i18n="serviceMeta.cta">Discuss this service</a>
         </article>
-        <article class="service-item reveal">
-          <span>03</span>
+        <article class="service-card reveal">
+          <div class="icon-line">04</div>
           <h3 data-i18n="services.automation.title">AI Automation</h3>
-          <p data-i18n="services.automation.description">Smart workflows that reduce repetitive work and connect AI tools to real operations.</p>
+          <p data-i18n="services.automation.text">Workflow automation that connects tools, reduces manual work, and gives teams more speed.</p>
+          <ul class="service-points">
+            <li><span data-i18n="serviceMeta.benefit">Benefit</span><strong data-i18n="services.automation.benefit">Automated operations and smart integrations</strong></li>
+            <li><span data-i18n="serviceMeta.technology">Technology</span><strong>Agents, APIs, scripts, dashboards</strong></li>
+            <li><span data-i18n="serviceMeta.process">Process</span><strong>Workflow mapping, integration, testing, monitoring</strong></li>
+            <li><span data-i18n="serviceMeta.industries">Industries</span><strong>Sales, admin, customer operations</strong></li>
+          </ul>
+          <a class="service-cta" href="#contact" data-i18n="serviceMeta.cta">Discuss this service</a>
         </article>
-        <article class="service-item reveal">
-          <span>04</span>
-          <h3 data-i18n="services.ml.title">Machine Learning Models</h3>
-          <p data-i18n="services.ml.description">Data preparation, model development, evaluation, and prediction-focused applications.</p>
+        <article class="service-card reveal">
+          <div class="icon-line">05</div>
+          <h3 data-i18n="services.mobile.title">Mobile Apps</h3>
+          <p data-i18n="services.mobile.text">Mobile-first product experiences with clean interfaces, strong flows, and reliable backend support.</p>
+          <ul class="service-points">
+            <li><span data-i18n="serviceMeta.benefit">Benefit</span><strong data-i18n="services.mobile.benefit">Product thinking from prototype to launch</strong></li>
+            <li><span data-i18n="serviceMeta.technology">Technology</span><strong>Responsive UI, APIs, cloud-ready systems</strong></li>
+            <li><span data-i18n="serviceMeta.process">Process</span><strong>Prototype, UI flows, backend, release</strong></li>
+            <li><span data-i18n="serviceMeta.industries">Industries</span><strong>Consumer apps, booking, service tools</strong></li>
+          </ul>
+          <a class="service-cta" href="#contact" data-i18n="serviceMeta.cta">Discuss this service</a>
         </article>
-        <article class="service-item reveal">
-          <span>05</span>
-          <h3 data-i18n="services.database.title">Database Design</h3>
-          <p data-i18n="services.database.description">Structured SQL and MySQL database design for reliable storage, querying, and reporting.</p>
+        <article class="service-card reveal">
+          <div class="icon-line">06</div>
+          <h3 data-i18n="services.ux.title">UI/UX Design</h3>
+          <p data-i18n="services.ux.text">Premium product interfaces, conversion-focused flows, design systems, and brand-aligned digital experiences.</p>
+          <ul class="service-points">
+            <li><span data-i18n="serviceMeta.benefit">Benefit</span><strong data-i18n="services.ux.benefit">Clear journeys, polished visuals, and better user trust</strong></li>
+            <li><span data-i18n="serviceMeta.technology">Technology</span><strong>Figma, design systems, responsive UI, accessibility</strong></li>
+            <li><span data-i18n="serviceMeta.process">Process</span><strong>Research, wireframes, visual design, handoff</strong></li>
+            <li><span data-i18n="serviceMeta.industries">Industries</span><strong>SaaS, websites, mobile apps, dashboards</strong></li>
+          </ul>
+          <a class="service-cta" href="#contact" data-i18n="serviceMeta.cta">Discuss this service</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="icon-line">07</div>
+          <h3 data-i18n="services.security.title">Cybersecurity</h3>
+          <p data-i18n="services.security.text">Security-focused audits, hardening, authentication flows, and safer system architecture.</p>
+          <ul class="service-points">
+            <li><span data-i18n="serviceMeta.benefit">Benefit</span><strong data-i18n="services.security.benefit">Risk reduction and secure development</strong></li>
+            <li><span data-i18n="serviceMeta.technology">Technology</span><strong>Auth, monitoring, best practices</strong></li>
+            <li><span data-i18n="serviceMeta.process">Process</span><strong>Audit, hardening, validation, guidance</strong></li>
+            <li><span data-i18n="serviceMeta.industries">Industries</span><strong>Client portals, finance, operations</strong></li>
+          </ul>
+          <a class="service-cta" href="#contact" data-i18n="serviceMeta.cta">Discuss this service</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="icon-line">08</div>
+          <h3 data-i18n="services.consulting.title">IT Consulting</h3>
+          <p data-i18n="services.consulting.text">Technical strategy, architecture decisions, product planning, and roadmap support.</p>
+          <ul class="service-points">
+            <li><span data-i18n="serviceMeta.benefit">Benefit</span><strong data-i18n="services.consulting.benefit">Clear technical direction before building</strong></li>
+            <li><span data-i18n="serviceMeta.technology">Technology</span><strong>Systems, stack, workflows, delivery</strong></li>
+            <li><span data-i18n="serviceMeta.process">Process</span><strong>Assessment, roadmap, architecture, execution plan</strong></li>
+            <li><span data-i18n="serviceMeta.industries">Industries</span><strong>Startups, SMEs, technical teams</strong></li>
+          </ul>
+          <a class="service-cta" href="#contact" data-i18n="serviceMeta.cta">Discuss this service</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="icon-line">09</div>
+          <h3 data-i18n="services.seo.title">SEO</h3>
+          <p data-i18n="services.seo.text">Technical SEO, metadata, content structure, speed optimization, and search-ready website foundations.</p>
+          <ul class="service-points">
+            <li><span data-i18n="serviceMeta.benefit">Benefit</span><strong data-i18n="services.seo.benefit">Visibility, structure, and measurable growth</strong></li>
+            <li><span data-i18n="serviceMeta.technology">Technology</span><strong>Schema, sitemap, performance, content</strong></li>
+            <li><span data-i18n="serviceMeta.process">Process</span><strong>Audit, metadata, technical fixes, reporting</strong></li>
+            <li><span data-i18n="serviceMeta.industries">Industries</span><strong>Local business, SaaS, e-commerce</strong></li>
+          </ul>
+          <a class="service-cta" href="#contact" data-i18n="serviceMeta.cta">Discuss this service</a>
         </article>
       </div>
     </section>
 
-    <section class="section contact" id="contact">
+    <section class="section process-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="process.eyebrow">Process</p>
+        <h2 data-i18n="process.heading">From strategy to launch, every project moves through a clear delivery system.</h2>
+      </div>
+      <div class="process-timeline reveal">
+        <article><span>01</span><h3 data-i18n="process.discovery.title">Discovery</h3><p data-i18n="process.discovery.text">We define goals, users, risks, scope, and the right technical path.</p></article>
+        <article><span>02</span><h3 data-i18n="process.design.title">Design</h3><p data-i18n="process.design.text">We shape premium interfaces, flows, and product architecture.</p></article>
+        <article><span>03</span><h3 data-i18n="process.build.title">Build</h3><p data-i18n="process.build.text">We develop the system with clean code, secure logic, and scalable structure.</p></article>
+        <article><span>04</span><h3 data-i18n="process.launch.title">Launch</h3><p data-i18n="process.launch.text">We optimize, deploy, measure, and prepare the product for growth.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="case-studies">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="cases.eyebrow">Case Studies</p>
+        <h2 data-i18n="cases.heading">Premium project narratives for AI, software, and secure digital operations.</h2>
+      </div>
+      <div class="case-grid">
+        <article class="case-card reveal">
+          <span>01 / AI AUTOMATION</span>
+          <h3 data-i18n="cases.one.title">From manual workflows to intelligent operations</h3>
+          <p data-i18n="cases.one.text">A concept case study showing how AI assistants, routing logic, and dashboards reduce repetitive work.</p>
+        </article>
+        <article class="case-card reveal">
+          <span>02 / WEB PLATFORM</span>
+          <h3 data-i18n="cases.two.title">A full-stack portal for real-time business visibility</h3>
+          <p data-i18n="cases.two.text">A product story focused on analytics, roles, database structure, and clean enterprise UI.</p>
+        </article>
+        <article class="case-card reveal">
+          <span>03 / CYBERSECURITY</span>
+          <h3 data-i18n="cases.three.title">Security-first architecture for growing teams</h3>
+          <p data-i18n="cases.three.text">A system approach to safer authentication, controlled access, and audit-ready user journeys.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="portfolio.eyebrow">Portfolio</p>
+        <h2 data-i18n="portfolio.heading">Featured concepts built around real business outcomes.</h2>
+      </div>
+      <div class="filter-bar reveal" aria-label="Portfolio filters">
+        <button class="filter-btn active" type="button" data-filter="all" data-i18n="portfolio.filterAll">All</button>
+        <button class="filter-btn" type="button" data-filter="ai">AI</button>
+        <button class="filter-btn" type="button" data-filter="web">Web</button>
+        <button class="filter-btn" type="button" data-filter="security" data-i18n="portfolio.filterSecurity">Security</button>
+      </div>
+      <div class="portfolio-grid">
+        <article class="project-card reveal" data-category="ai">
+          <div class="mockup"><span>AI Ops</span></div>
+          <h3 data-i18n="portfolio.ai.title">AI Automation Command Center</h3>
+          <p data-i18n="portfolio.ai.text">A dashboard concept for automated workflows, intelligent routing, and operational visibility.</p>
+          <a href="#contact" data-i18n="portfolio.cta">Request Similar Work</a>
+        </article>
+        <article class="project-card reveal" data-category="web">
+          <div class="mockup"><span>SaaS</span></div>
+          <h3 data-i18n="portfolio.web.title">Full-Stack Analytics Platform</h3>
+          <p data-i18n="portfolio.web.text">A secure web platform with data views, reporting, admin workflows, and product-grade UI.</p>
+          <a href="#contact" data-i18n="portfolio.cta">Request Similar Work</a>
+        </article>
+        <article class="project-card reveal" data-category="web">
+          <div class="mockup"><span>UX</span></div>
+          <h3 data-i18n="portfolio.ecommerce.title">E-commerce Growth System</h3>
+          <p data-i18n="portfolio.ecommerce.text">A conversion-focused storefront experience with product flows, checkout logic, and SEO structure.</p>
+          <a href="#contact" data-i18n="portfolio.cta">Request Similar Work</a>
+        </article>
+        <article class="project-card reveal" data-category="security">
+          <div class="mockup"><span>SEC</span></div>
+          <h3 data-i18n="portfolio.security.title">Security-First Client Portal</h3>
+          <p data-i18n="portfolio.security.text">A private portal concept with authentication, controlled access, audit-friendly UX, and secure data handling.</p>
+          <a href="#contact" data-i18n="portfolio.cta">Request Similar Work</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="technologies">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="tech.eyebrow">Technologies</p>
+        <h2 data-i18n="tech.heading">A pragmatic stack for fast, secure, and scalable digital products.</h2>
+      </div>
+      <div class="tech-cloud reveal" aria-label="Technology stack">
+        <span>Next.js</span><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Framer Motion</span>
+        <span>Node.js</span><span>Python</span><span>PHP</span><span>SQL</span><span>MySQL</span>
+        <span>AI APIs</span><span>Machine Learning</span><span>Cybersecurity</span><span>SEO</span><span>UI/UX</span>
+      </div>
+    </section>
+
+    <section class="section" id="industries">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="industries.eyebrow">Industries</p>
+        <h2 data-i18n="industries.heading">Built for teams that need clarity, speed, and intelligent systems.</h2>
+      </div>
+      <div class="industry-grid">
+        <article class="industry-card reveal"><span>01</span><h3 data-i18n="industries.saas">SaaS & Digital Products</h3></article>
+        <article class="industry-card reveal"><span>02</span><h3 data-i18n="industries.retail">Retail & E-commerce</h3></article>
+        <article class="industry-card reveal"><span>03</span><h3 data-i18n="industries.finance">Finance & Operations</h3></article>
+        <article class="industry-card reveal"><span>04</span><h3 data-i18n="industries.education">Education & Training</h3></article>
+        <article class="industry-card reveal"><span>05</span><h3 data-i18n="industries.health">Healthcare & Services</h3></article>
+        <article class="industry-card reveal"><span>06</span><h3 data-i18n="industries.startups">Startups & Agencies</h3></article>
+      </div>
+    </section>
+
+    <section class="section testimonials-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="testimonials.eyebrow">Testimonials</p>
+        <h2 data-i18n="testimonials.heading">Designed to feel calm, precise, and trustworthy from first click.</h2>
+      </div>
+      <div class="testimonial-grid">
+        <article class="quote-card reveal"><p data-i18n="testimonials.one">"A clean technical partner for teams that need software strategy and execution in one place."</p><span>Product Lead</span></article>
+        <article class="quote-card reveal"><p data-i18n="testimonials.two">"The brand feels premium, modern, and ready for serious B2B clients."</p><span>Design Review</span></article>
+        <article class="quote-card reveal"><p data-i18n="testimonials.three">"Strong positioning for AI automation, web platforms, and secure digital systems."</p><span>Technology Advisor</span></article>
+      </div>
+    </section>
+
+    <section class="section blog-section" id="blog">
+      <div class="section-heading reveal">
+        <p class="eyebrow" data-i18n="blog.eyebrow">Insights</p>
+        <h2 data-i18n="blog.heading">Latest articles and technical notes.</h2>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-card reveal"><span>AI AUTOMATION</span><h3 data-i18n="blog.one.title">How businesses can use AI without adding complexity</h3><p data-i18n="blog.one.text">A simple framework for identifying automation opportunities that actually save time.</p></article>
+        <article class="blog-card reveal"><span>SECURITY</span><h3 data-i18n="blog.two.title">Why secure architecture starts before code</h3><p data-i18n="blog.two.text">Good systems are planned around access, data, risks, and operational realities.</p></article>
+        <article class="blog-card reveal"><span>SEO</span><h3 data-i18n="blog.three.title">Technical SEO foundations for modern websites</h3><p data-i18n="blog.three.text">Performance, metadata, schema, and structure are part of the product experience.</p></article>
+      </div>
+    </section>
+
+    <section class="section careers-section" id="careers">
+      <div class="glass-panel careers-panel reveal">
+        <div>
+          <p class="eyebrow" data-i18n="careers.eyebrow">Careers</p>
+          <h2 data-i18n="careers.heading">Building a focused network of creators, engineers, and AI thinkers.</h2>
+        </div>
+        <a class="btn btn-secondary" href="mailto:limanierblin561@gmail.com" data-i18n="careers.cta">Send Your Profile</a>
+      </div>
+    </section>
+
+    <section class="section faq-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">FAQ</p>
+        <h2 data-i18n="faq.heading">Questions before starting?</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details open>
+          <summary data-i18n="faq.one.q">What does Echonix IT build?</summary>
+          <p data-i18n="faq.one.a">Custom software, websites, AI tools, automations, mobile experiences, cybersecurity improvements, SEO foundations, and consulting roadmaps.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.two.q">Who do you work with?</summary>
+          <p data-i18n="faq.two.a">Businesses, startups, agencies, and teams in Europe and the United States that need reliable digital systems.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.three.q">Can you communicate in multiple languages?</summary>
+          <p data-i18n="faq.three.a">Yes. Echonix IT supports English, German, and Albanian communication.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
       <div class="section-heading reveal">
         <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
-        <h2 data-i18n="contact.heading">Let's Build Something Intelligent</h2>
+        <h2 data-i18n="contact.heading">Let us design the system your business needs next.</h2>
       </div>
       <div class="contact-grid">
-        <form class="glass-card contact-form reveal" action="#" method="post">
-          <label for="name" data-i18n="contact.nameLabel">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" data-i18n-placeholder="contact.namePlaceholder" required>
-
-          <label for="email" data-i18n="contact.emailLabel">Email</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" data-i18n-placeholder="contact.emailPlaceholder" required>
-
-          <label for="message" data-i18n="contact.messageLabel">Message</label>
-          <textarea id="message" name="message" rows="6" placeholder="Tell me about your project" data-i18n-placeholder="contact.messagePlaceholder" required></textarea>
-
-          <button class="btn btn-primary" type="submit" data-i18n="contact.sendButton">Send Message</button>
+        <form class="contact-form glass-panel reveal" action="#" method="post">
+          <label for="name" data-i18n="contact.name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" data-i18n-placeholder="contact.namePlaceholder" required>
+          <label for="email" data-i18n="contact.email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@company.com" data-i18n-placeholder="contact.emailPlaceholder" required>
+          <label for="message" data-i18n="contact.message">Project Details</label>
+          <textarea id="message" name="message" rows="6" placeholder="Tell us what you want to build" data-i18n-placeholder="contact.messagePlaceholder" required></textarea>
+          <button class="btn btn-primary" type="submit" data-i18n="contact.submit">Send Request</button>
         </form>
+        <aside class="contact-info reveal">
+          <div class="info-card">
+            <span data-i18n="contact.email">Email</span>
+            <a href="mailto:limanierblin561@gmail.com">limanierblin561@gmail.com</a>
+          </div>
+          <div class="info-card">
+            <span data-i18n="contact.phone">Phone</span>
+            <a href="tel:+38344307469">+383 44 307 469</a>
+          </div>
+          <div class="info-card">
+            <span data-i18n="contact.market">Markets</span>
+            <strong>Europe / United States</strong>
+          </div>
+          <div class="map-placeholder">
+            <span data-i18n="contact.map">Google Maps placeholder</span>
+            <strong>Prishtina, Kosovo</strong>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-        <div class="contact-panel reveal">
-          <p data-i18n="contact.panelText">
-            Available for web applications, backend systems, automation workflows, machine learning
-            tools, and custom AI-powered products.
-          </p>
-          <div class="info-list" aria-label="Personal details">
-            <div>
-              <span data-i18n="contact.locationLabel">Location</span>
-              <strong>Prishtina, Kosovo</strong>
-            </div>
-            <div>
-              <span data-i18n="contact.educationLabel">Education</span>
-              <strong data-i18n="contact.educationValue">Kolegji AAB, AI & Programming</strong>
-            </div>
-            <div>
-              <span data-i18n="contact.languagesLabel">Languages</span>
-              <strong data-i18n="contact.languagesValue">Albanian, English, German</strong>
-            </div>
-          </div>
-          <div class="social-links" aria-label="Social links">
-            <a href="https://github.com/erblin307" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub</a>
-            <a href="https://www.linkedin.com/in/erblin-limani-593b2a316" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn</a>
-            <a href="mailto:limanierblin561@gmail.com" aria-label="Send email">Email</a>
-          </div>
-        </div>
+    <section class="final-cta">
+      <div class="final-cta-inner reveal">
+        <span class="logo-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <h2 data-i18n="final.heading">Ready to build intelligent digital infrastructure?</h2>
+        <a class="btn btn-primary" href="mailto:limanierblin561@gmail.com" data-i18n="final.cta">Contact Echonix IT</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p data-i18n="footer.copy">&copy; 2026 Erblin Limani. Full-Stack Developer & AI/ML Programmer.</p>
+    <div>
+      <strong>Echonix IT</strong>
+      <span data-i18n="footer.tagline">Intelligent Solutions. Limitless Impact.</span>
+    </div>
+    <p data-i18n="footer.copy">&copy; 2026 Echonix IT. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>

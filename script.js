@@ -1,1386 +1,631 @@
-:root {
-  --black: #07111f;
-  --navy: #0f172a;
-  --panel: rgba(9, 24, 45, 0.72);
-  --panel-strong: rgba(12, 28, 52, 0.92);
-  --line: rgba(68, 151, 255, 0.18);
-  --line-strong: rgba(34, 211, 238, 0.48);
-  --blue: #2563eb;
-  --cyan: #22d3ee;
-  --violet: #8b5cf6;
-  --white: #ffffff;
-  --muted: #9fb0c8;
-  --soft: #d8e7ff;
-  --shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
-  --glow: 0 0 42px rgba(34, 211, 238, 0.22);
-  --radius: 18px;
-  --max: 1180px;
-  --header: 78px;
-  --font: "Space Grotesk", "Sora", "Manrope", "Inter", "Segoe UI", system-ui, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--header);
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  color: var(--white);
-  background:
-    radial-gradient(circle at 18% 8%, rgba(37, 99, 235, 0.24), transparent 32%),
-    radial-gradient(circle at 82% 18%, rgba(34, 211, 238, 0.14), transparent 30%),
-    linear-gradient(180deg, #050b16 0%, var(--black) 42%, #050912 100%);
-  font-family: var(--font);
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -4;
-  pointer-events: none;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 92px 92px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.78), transparent 88%);
-}
-
-body.menu-open {
-  overflow: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input,
-textarea {
-  font: inherit;
-}
-
-.loader {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  display: grid;
-  place-items: center;
-  background: #050b16;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.loader.hidden {
-  opacity: 0;
-  visibility: hidden;
-  display: none;
-}
-
-.loader-mark,
-.logo-mark {
-  position: relative;
-  display: inline-block;
-  width: 54px;
-  height: 38px;
-}
-
-.loader-mark span,
-.logo-mark span {
-  position: absolute;
-  left: 0;
-  height: 6px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--blue), var(--cyan));
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.45);
-}
-
-.loader-mark span:nth-child(1),
-.logo-mark span:nth-child(1) {
-  top: 0;
-  left: 14px;
-  width: 40px;
-}
-
-.loader-mark span:nth-child(2),
-.logo-mark span:nth-child(2) {
-  top: 11px;
-  width: 28px;
-}
-
-.loader-mark span:nth-child(3),
-.logo-mark span:nth-child(3) {
-  top: 22px;
-  left: 8px;
-  width: 34px;
-}
-
-.loader-mark span:nth-child(4),
-.logo-mark span:nth-child(4) {
-  top: 33px;
-  left: 14px;
-  width: 40px;
-}
-
-.logo-mark::before {
-  content: "";
-  position: absolute;
-  left: -8px;
-  top: 10px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: 8px 11px 0 var(--cyan), 0 22px 0 var(--blue);
-}
-
-.logo-mark.mini {
-  transform: scale(1.25);
-}
-
-.signal-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: -3;
-  width: 100%;
-  height: 100%;
-  opacity: 0.55;
-}
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  height: var(--header);
-  border-bottom: 1px solid var(--line);
-  background: rgba(5, 11, 22, 0.78);
-  backdrop-filter: blur(22px);
-}
-
-.navbar {
-  width: min(100% - 40px, var(--max));
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 22px;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  min-width: fit-content;
-}
-
-.brand-text {
-  display: grid;
-  gap: 3px;
-}
-
-.brand-text strong {
-  font-size: 1.15rem;
-  letter-spacing: 0.01em;
-}
-
-.brand-text small {
-  color: var(--muted);
-  font-size: 0.72rem;
-}
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.nav-menu a {
-  display: inline-flex;
-  min-height: 42px;
-  align-items: center;
-  border-radius: 999px;
-  padding: 0 12px;
-  color: var(--muted);
-  font-size: 0.9rem;
-  transition: color 0.2s ease, background 0.2s ease;
-}
-
-.nav-menu a:hover,
-.nav-menu a:focus-visible {
-  color: var(--white);
-  background: rgba(37, 99, 235, 0.14);
-  outline: none;
-}
-
-.nav-actions,
-.language-switcher {
-  display: flex;
-  align-items: center;
-}
-
-.nav-actions {
-  gap: 10px;
-}
-
-.language-switcher {
-  gap: 3px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 4px;
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.language-btn {
-  display: inline-grid;
-  min-width: 34px;
-  min-height: 30px;
-  place-items: center;
-  border: 0;
-  border-radius: 999px;
-  color: var(--muted);
-  background: transparent;
-  font-size: 0.72rem;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.language-btn.active,
-.language-btn:hover,
-.language-btn:focus-visible {
-  color: #03101a;
-  background: linear-gradient(135deg, var(--cyan), #ffffff);
-  outline: none;
-}
-
-.menu-toggle {
-  display: none;
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.045);
-  cursor: pointer;
-}
-
-.floating-menu-toggle {
-  position: fixed;
-  top: 17px;
-  right: 14px;
-  z-index: 140;
-}
-
-.menu-toggle span {
-  display: block;
-  width: 18px;
-  height: 2px;
-  margin: 4px auto;
-  background: var(--white);
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.menu-toggle.active span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
-}
-
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
-}
-
-.hero,
-.section,
-.final-cta,
-.site-footer {
-  width: min(100% - 40px, var(--max));
-  margin: 0 auto;
-}
-
-.hero {
-  position: relative;
-  min-height: calc(100vh - var(--header));
-  display: grid;
-  align-items: center;
-  padding: 88px 0 72px;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  overflow: hidden;
-}
-
-.wave-grid {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 6%;
-  height: 220px;
-  background:
-    radial-gradient(ellipse at 50% 90%, rgba(34, 211, 238, 0.38), transparent 55%),
-    repeating-linear-gradient(8deg, transparent 0 30px, rgba(34, 211, 238, 0.18) 31px, transparent 32px),
-    repeating-linear-gradient(172deg, transparent 0 44px, rgba(37, 99, 235, 0.16) 45px, transparent 46px);
-  transform: perspective(720px) rotateX(58deg);
-  transform-origin: bottom;
-  animation: wavePulse 7s ease-in-out infinite;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(28px);
-  opacity: 0.5;
-}
-
-.orb-a {
-  width: 220px;
-  height: 220px;
-  left: 2%;
-  top: 16%;
-  background: rgba(37, 99, 235, 0.35);
-}
-
-.orb-b {
-  width: 180px;
-  height: 180px;
-  right: 8%;
-  bottom: 16%;
-  background: rgba(34, 211, 238, 0.28);
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 56px;
-  align-items: center;
-}
-
-.hero-inner > *,
-.hero-copy {
-  min-width: 0;
-}
-
-.eyebrow {
-  margin: 0 0 16px;
-  color: var(--cyan);
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-h1,
-h2,
-h3,
-p {
-  overflow-wrap: anywhere;
-}
-
-h1,
-h2,
-h3 {
-  margin: 0;
-  letter-spacing: 0;
-}
-
-h1 {
-  max-width: 760px;
-  font-size: clamp(3rem, 7vw, 6.6rem);
-  line-height: 0.92;
-}
-
-h2 {
-  max-width: 860px;
-  font-size: clamp(2rem, 4.5vw, 4rem);
-  line-height: 1.02;
-}
-
-h3 {
-  font-size: 1.16rem;
-  line-height: 1.25;
-}
-
-.hero-text {
-  max-width: 690px;
-  margin: 26px 0 0;
-  color: var(--soft);
-  font-size: clamp(1.04rem, 1.6vw, 1.24rem);
-  line-height: 1.75;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 34px;
-}
-
-.btn {
-  display: inline-flex;
-  min-height: 50px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  padding: 0 22px;
-  font-weight: 850;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-}
-
-.btn:hover,
-.btn:focus-visible {
-  transform: translateY(-2px);
-  outline: none;
-}
-
-.btn-primary {
-  color: #03101a;
-  background: linear-gradient(135deg, var(--cyan), #ffffff);
-  box-shadow: 0 18px 45px rgba(34, 211, 238, 0.26);
-}
-
-.btn-secondary {
-  color: var(--white);
-  border-color: var(--line-strong);
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.trust-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 26px;
-}
-
-.trust-row span,
-.tech-cloud span {
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 9px 12px;
-  color: var(--soft);
-  background: rgba(255, 255, 255, 0.045);
-  font-size: 0.86rem;
-}
-
-.hero-visual {
-  position: relative;
-  min-height: 520px;
-}
-
-.system-card,
-.glass-panel,
-.service-card,
-.project-card,
-.industry-card,
-.quote-card,
-.blog-card,
-.info-card,
-.map-placeholder,
-.stats-grid article {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
-    var(--panel);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(20px);
-}
-
-.system-card-main {
-  position: absolute;
-  inset: 34px 0 auto auto;
-  width: min(100%, 470px);
-  min-height: 430px;
-  overflow: hidden;
-}
-
-.card-top {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-bottom: 1px solid var(--line);
-  padding: 16px;
-}
-
-.card-top span {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--cyan);
-}
-
-.card-top span:nth-child(2) {
-  background: var(--blue);
-}
-
-.card-top span:nth-child(3) {
-  background: var(--violet);
-}
-
-.card-top small {
-  margin-left: auto;
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-}
-
-.orbit-system {
-  position: relative;
-  height: 360px;
-  display: grid;
-  place-items: center;
-}
-
-.orbit-system::before,
-.orbit-system::after {
-  content: "";
-  position: absolute;
-  border: 1px solid rgba(34, 211, 238, 0.2);
-  border-radius: 50%;
-  animation: rotateRing 18s linear infinite;
-}
-
-.orbit-system::before {
-  width: 250px;
-  height: 250px;
-}
-
-.orbit-system::after {
-  width: 330px;
-  height: 180px;
-  transform: rotate(-18deg);
-}
-
-.core-node {
-  display: grid;
-  width: 132px;
-  height: 132px;
-  place-items: center;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.2), rgba(37, 99, 235, 0.08));
-  box-shadow: var(--glow);
-}
-
-.orbit-node {
-  position: absolute;
-  display: grid;
-  width: 56px;
-  height: 56px;
-  place-items: center;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  color: var(--cyan);
-  background: rgba(7, 17, 31, 0.86);
-  font-size: 0.76rem;
-  font-weight: 850;
-}
-
-.node-1 { top: 54px; left: 86px; }
-.node-2 { top: 72px; right: 86px; }
-.node-3 { bottom: 62px; left: 108px; }
-.node-4 { bottom: 84px; right: 92px; }
-
-.metric-tile {
-  position: absolute;
-  display: grid;
-  gap: 4px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 18px;
-  background: rgba(5, 16, 31, 0.82);
-  box-shadow: var(--glow);
-}
-
-.metric-tile strong {
-  color: var(--cyan);
-  font-size: 2rem;
-}
-
-.metric-tile span {
-  color: var(--muted);
-  font-size: 0.82rem;
-}
-
-.tile-a { left: 0; top: 72px; }
-.tile-b { right: 20px; bottom: 20px; }
-
-.section {
-  padding: 96px 0;
-}
-
-.section-heading,
-.section-label {
-  margin-bottom: 40px;
-}
-
-.split-section {
-  display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 28px;
-  align-items: start;
-}
-
-.about-panel,
-.careers-panel {
-  padding: 30px;
-}
-
-.about-panel p,
-.service-card p,
-.project-card p,
-.process-timeline p,
-.quote-card p,
-.blog-card p,
-.faq-list p,
-.contact-info strong,
-.site-footer span,
-.site-footer p {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.about-list {
-  display: grid;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.about-list span {
-  border-left: 2px solid var(--cyan);
-  padding-left: 14px;
-  color: var(--soft);
-}
-
-.stats-grid,
-.service-grid,
-.case-grid,
-.portfolio-grid,
-.industry-grid,
-.testimonial-grid,
-.blog-grid,
-.contact-grid {
-  display: grid;
-  gap: 18px;
-}
-
-.stats-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.stats-grid article {
-  padding: 24px;
-}
-
-.stats-grid strong {
-  display: block;
-  color: var(--cyan);
-  font-size: 2.4rem;
-}
-
-.stats-grid span {
-  color: var(--muted);
-}
-
-.service-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.service-card {
-  min-height: 470px;
-  padding: 24px;
-  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
-}
-
-.service-card:hover,
-.project-card:hover,
-.industry-card:hover,
-.blog-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--line-strong);
-  background: var(--panel-strong);
-}
-
-.icon-line {
-  display: inline-grid;
-  width: 44px;
-  height: 44px;
-  margin-bottom: 22px;
-  place-items: center;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  color: var(--cyan);
-  font-size: 0.82rem;
-  font-weight: 900;
-}
-
-.service-card p {
-  min-height: 78px;
-}
-
-.service-points {
-  display: grid;
-  gap: 8px;
-  margin: 22px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.service-points li {
-  display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 10px;
-  align-items: start;
-  border-top: 1px solid rgba(68, 151, 255, 0.12);
-  padding-top: 10px;
-  color: var(--soft);
-  font-size: 0.86rem;
-}
-
-.service-points span {
-  color: var(--cyan);
-  font-size: 0.7rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.service-points strong {
-  color: var(--soft);
-  font-size: 0.86rem;
-  font-weight: 650;
-  line-height: 1.45;
-}
-
-.service-cta {
-  display: inline-flex;
-  width: fit-content;
-  margin-top: 22px;
-  border-bottom: 1px solid rgba(34, 211, 238, 0.55);
-  color: var(--cyan);
-  font-weight: 850;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.service-cta:hover,
-.service-cta:focus-visible {
-  color: var(--white);
-  border-color: var(--white);
-  outline: none;
-}
-
-.process-timeline {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.035);
-}
-
-.process-timeline article {
-  min-height: 230px;
-  padding: 28px;
-  border-right: 1px solid var(--line);
-}
-
-.process-timeline article:last-child {
-  border-right: 0;
-}
-
-.process-timeline span {
-  display: inline-block;
-  margin-bottom: 28px;
-  color: var(--cyan);
-  font-weight: 900;
-}
-
-.case-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.case-card {
-  min-height: 270px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 28px;
-  background:
-    radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.16), transparent 34%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
-    var(--panel);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(20px);
-  transition: transform 0.22s ease, border-color 0.22s ease;
-}
-
-.case-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--line-strong);
-}
-
-.case-card span {
-  color: var(--cyan);
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-}
-
-.case-card h3 {
-  margin-top: 46px;
-}
-
-.case-card p {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
-.filter-btn {
-  min-height: 40px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0 16px;
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.045);
-  cursor: pointer;
-}
-
-.filter-btn.active,
-.filter-btn:hover,
-.filter-btn:focus-visible {
-  color: #03101a;
-  background: var(--cyan);
-  outline: none;
-}
-
-.portfolio-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.project-card,
-.blog-card,
-.quote-card {
-  padding: 22px;
-  transition: transform 0.22s ease, border-color 0.22s ease;
-}
-
-.project-card.is-hidden {
-  display: none;
-}
-
-.mockup {
-  display: grid;
-  min-height: 160px;
-  margin-bottom: 22px;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background:
-    radial-gradient(circle at 70% 20%, rgba(34, 211, 238, 0.36), transparent 28%),
-    repeating-linear-gradient(155deg, transparent 0 34px, rgba(34, 211, 238, 0.12) 35px, transparent 36px),
-    rgba(5, 14, 29, 0.72);
-}
-
-.mockup span {
-  color: var(--white);
-  font-size: 1.35rem;
-  font-weight: 900;
-}
-
-.project-card a {
-  display: inline-flex;
-  margin-top: 16px;
-  color: var(--cyan);
-  font-weight: 850;
-}
-
-.tech-cloud {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.tech-cloud span {
-  padding: 13px 16px;
-}
-
-.industry-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.industry-card {
-  min-height: 156px;
-  padding: 24px;
-  transition: transform 0.22s ease, border-color 0.22s ease;
-}
-
-.industry-card span,
-.blog-card span {
-  color: var(--cyan);
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-}
-
-.industry-card h3 {
-  margin-top: 30px;
-}
-
-.testimonial-grid,
-.blog-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.quote-card p {
-  margin-top: 0;
-  font-size: 1.08rem;
-}
-
-.quote-card span {
-  color: var(--cyan);
-  font-weight: 850;
-}
-
-.blog-card h3 {
-  margin-top: 18px;
-}
-
-.careers-panel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.faq-list {
-  display: grid;
-  gap: 12px;
-}
-
-.faq-list details {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.faq-list summary {
-  color: var(--white);
-  font-weight: 850;
-  cursor: pointer;
-}
-
-.contact-grid {
-  grid-template-columns: 1.08fr 0.92fr;
-}
-
-.contact-form {
-  display: grid;
-  gap: 12px;
-  padding: 28px;
-}
-
-.contact-form label {
-  color: var(--white);
-  font-weight: 850;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 15px 16px;
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.045);
-  outline: none;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: var(--cyan);
-  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.12);
-}
-
-.contact-form textarea {
-  resize: vertical;
-}
-
-.contact-form .btn {
-  width: fit-content;
-  margin-top: 8px;
-  cursor: pointer;
-}
-
-.contact-info {
-  display: grid;
-  gap: 14px;
-}
-
-.info-card {
-  display: grid;
-  gap: 6px;
-  padding: 20px;
-}
-
-.info-card span {
-  color: var(--cyan);
-  font-size: 0.76rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.map-placeholder {
-  min-height: 190px;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  text-align: center;
-  background:
-    radial-gradient(circle at 55% 40%, rgba(34, 211, 238, 0.16), transparent 40%),
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    var(--panel);
-  background-size: auto, 32px 32px, 32px 32px, auto;
-}
-
-.map-placeholder span {
-  color: var(--muted);
-}
-
-.map-placeholder strong {
-  color: var(--white);
-}
-
-.final-cta {
-  padding: 90px 0 110px;
-}
-
-.final-cta-inner {
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line-strong);
-  border-radius: 30px;
-  padding: 70px 30px;
-  text-align: center;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.26), transparent 42%),
-    rgba(255, 255, 255, 0.045);
-  box-shadow: var(--shadow);
-}
-
-.final-cta h2 {
-  margin: 28px 0;
-}
-
-.site-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  border-top: 1px solid var(--line);
-  padding: 30px 0 44px;
-}
-
-.site-footer div {
-  display: grid;
-  gap: 4px;
-}
-
-.reveal {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@keyframes wavePulse {
-  0%, 100% { opacity: 0.56; transform: perspective(720px) rotateX(58deg) translateY(0); }
-  50% { opacity: 0.9; transform: perspective(720px) rotateX(58deg) translateY(-12px); }
-}
-
-@keyframes rotateRing {
-  to { transform: rotate(360deg); }
-}
-
-@media (max-width: 1120px) {
-  .nav-menu {
-    gap: 0;
-  }
-
-  .nav-menu a {
-    padding: 0 9px;
-  }
-
-  .service-grid,
-  .case-grid,
-  .portfolio-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+const menuToggles = document.querySelectorAll(".menu-toggle");
+const navMenu = document.querySelector(".nav-menu");
+const navLinks = document.querySelectorAll(".nav-menu a");
+const languageButtons = document.querySelectorAll(".language-btn");
+const loader = document.getElementById("loader");
+
+function hideLoader() {
+  if (loader) {
+    loader.classList.add("hidden");
+    loader.style.display = "none";
   }
 }
 
-@media (max-width: 900px) {
-  .menu-toggle {
-    display: block;
-  }
+setTimeout(hideLoader, 900);
 
-  .nav-menu {
-    position: fixed;
-    top: var(--header);
-    left: 20px;
-    right: 20px;
-    display: grid;
-    gap: 6px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 14px;
-    background: rgba(5, 11, 22, 0.96);
-    box-shadow: var(--shadow);
-    transform: translateY(-18px);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+const translations = {
+  en: {
+    pageTitle: "Echonix IT | Intelligent Software, AI Automation & Cybersecurity",
+    "brand.tagline": "Intelligent Solutions",
+    "nav.about": "About",
+    "nav.services": "Services",
+    "nav.portfolio": "Portfolio",
+    "nav.caseStudies": "Case Studies",
+    "nav.technologies": "Technologies",
+    "nav.industries": "Industries",
+    "nav.contact": "Contact",
+    "hero.eyebrow": "Enterprise software studio for intelligent systems",
+    "hero.heading": "Intelligent Solutions. Limitless Impact.",
+    "hero.text": "Echonix IT engineers secure software, AI automation, custom web platforms, mobile apps, and digital systems for ambitious teams across Europe and the United States.",
+    "hero.primary": "Start a Project",
+    "hero.secondary": "Explore Work",
+    "hero.metricServices": "Service Lines",
+    "hero.metricMarkets": "Languages",
+    "stats.capabilities": "Digital capabilities",
+    "stats.markets": "Primary markets",
+    "stats.delivery": "Responsive delivery",
+    "stats.focus": "Client-focused strategy",
+    "about.eyebrow": "About Echonix IT",
+    "about.heading": "A modern technology partner for software, AI, and digital growth.",
+    "about.text": "Echonix IT combines engineering discipline, intelligent automation, and premium design to build secure digital products that feel fast, reliable, and ready for scale.",
+    "about.pointOne": "Built for startups, businesses, and enterprise teams.",
+    "about.pointTwo": "Serving Europe and the United States.",
+    "about.pointThree": "English, German, and Albanian communication.",
+    "services.eyebrow": "Services",
+    "services.heading": "Enterprise-grade digital services, designed as one connected system.",
+    "serviceMeta.benefit": "Benefit",
+    "serviceMeta.technology": "Technology",
+    "serviceMeta.process": "Process",
+    "serviceMeta.industries": "Industries",
+    "serviceMeta.cta": "Discuss this service",
+    "services.custom.title": "Custom Software",
+    "services.custom.text": "Tailored platforms, portals, dashboards, and business systems engineered around your workflows.",
+    "services.custom.benefit": "Architecture, automation, and scalable delivery",
+    "services.web.title": "Web Development",
+    "services.web.text": "High-performance websites and web applications with premium UI, SEO structure, and conversion focus.",
+    "services.web.benefit": "Fast, responsive, accessible interfaces",
+    "services.ai.title": "AI Solutions",
+    "services.ai.text": "AI assistants, prediction tools, data pipelines, and smart products powered by practical machine learning.",
+    "services.ai.benefit": "Models, data processing, and intelligent UX",
+    "services.automation.title": "AI Automation",
+    "services.automation.text": "Workflow automation that connects tools, reduces manual work, and gives teams more speed.",
+    "services.automation.benefit": "Automated operations and smart integrations",
+    "services.mobile.title": "Mobile Apps",
+    "services.mobile.text": "Mobile-first product experiences with clean interfaces, strong flows, and reliable backend support.",
+    "services.mobile.benefit": "Product thinking from prototype to launch",
+    "services.ux.title": "UI/UX Design",
+    "services.ux.text": "Premium product interfaces, conversion-focused flows, design systems, and brand-aligned digital experiences.",
+    "services.ux.benefit": "Clear journeys, polished visuals, and better user trust",
+    "services.security.title": "Cybersecurity",
+    "services.security.text": "Security-focused audits, hardening, authentication flows, and safer system architecture.",
+    "services.security.benefit": "Risk reduction and secure development",
+    "services.consulting.title": "IT Consulting",
+    "services.consulting.text": "Technical strategy, architecture decisions, product planning, and roadmap support.",
+    "services.consulting.benefit": "Clear technical direction before building",
+    "services.seo.title": "SEO",
+    "services.seo.text": "Technical SEO, metadata, content structure, speed optimization, and search-ready website foundations.",
+    "services.seo.benefit": "Visibility, structure, and measurable growth",
+    "process.eyebrow": "Process",
+    "process.heading": "From strategy to launch, every project moves through a clear delivery system.",
+    "process.discovery.title": "Discovery",
+    "process.discovery.text": "We define goals, users, risks, scope, and the right technical path.",
+    "process.design.title": "Design",
+    "process.design.text": "We shape premium interfaces, flows, and product architecture.",
+    "process.build.title": "Build",
+    "process.build.text": "We develop the system with clean code, secure logic, and scalable structure.",
+    "process.launch.title": "Launch",
+    "process.launch.text": "We optimize, deploy, measure, and prepare the product for growth.",
+    "cases.eyebrow": "Case Studies",
+    "cases.heading": "Premium project narratives for AI, software, and secure digital operations.",
+    "cases.one.title": "From manual workflows to intelligent operations",
+    "cases.one.text": "A concept case study showing how AI assistants, routing logic, and dashboards reduce repetitive work.",
+    "cases.two.title": "A full-stack portal for real-time business visibility",
+    "cases.two.text": "A product story focused on analytics, roles, database structure, and clean enterprise UI.",
+    "cases.three.title": "Security-first architecture for growing teams",
+    "cases.three.text": "A system approach to safer authentication, controlled access, and audit-ready user journeys.",
+    "portfolio.eyebrow": "Portfolio",
+    "portfolio.heading": "Featured concepts built around real business outcomes.",
+    "portfolio.filterAll": "All",
+    "portfolio.filterSecurity": "Security",
+    "portfolio.ai.title": "AI Automation Command Center",
+    "portfolio.ai.text": "A dashboard concept for automated workflows, intelligent routing, and operational visibility.",
+    "portfolio.web.title": "Full-Stack Analytics Platform",
+    "portfolio.web.text": "A secure web platform with data views, reporting, admin workflows, and product-grade UI.",
+    "portfolio.ecommerce.title": "E-commerce Growth System",
+    "portfolio.ecommerce.text": "A conversion-focused storefront experience with product flows, checkout logic, and SEO structure.",
+    "portfolio.security.title": "Security-First Client Portal",
+    "portfolio.security.text": "A private portal concept with authentication, controlled access, audit-friendly UX, and secure data handling.",
+    "portfolio.cta": "Request Similar Work",
+    "tech.eyebrow": "Technologies",
+    "tech.heading": "A pragmatic stack for fast, secure, and scalable digital products.",
+    "industries.eyebrow": "Industries",
+    "industries.heading": "Built for teams that need clarity, speed, and intelligent systems.",
+    "industries.saas": "SaaS & Digital Products",
+    "industries.retail": "Retail & E-commerce",
+    "industries.finance": "Finance & Operations",
+    "industries.education": "Education & Training",
+    "industries.health": "Healthcare & Services",
+    "industries.startups": "Startups & Agencies",
+    "testimonials.eyebrow": "Testimonials",
+    "testimonials.heading": "Designed to feel calm, precise, and trustworthy from first click.",
+    "testimonials.one": "\"A clean technical partner for teams that need software strategy and execution in one place.\"",
+    "testimonials.two": "\"The brand feels premium, modern, and ready for serious B2B clients.\"",
+    "testimonials.three": "\"Strong positioning for AI automation, web platforms, and secure digital systems.\"",
+    "blog.eyebrow": "Insights",
+    "blog.heading": "Latest articles and technical notes.",
+    "blog.one.title": "How businesses can use AI without adding complexity",
+    "blog.one.text": "A simple framework for identifying automation opportunities that actually save time.",
+    "blog.two.title": "Why secure architecture starts before code",
+    "blog.two.text": "Good systems are planned around access, data, risks, and operational realities.",
+    "blog.three.title": "Technical SEO foundations for modern websites",
+    "blog.three.text": "Performance, metadata, schema, and structure are part of the product experience.",
+    "careers.eyebrow": "Careers",
+    "careers.heading": "Building a focused network of creators, engineers, and AI thinkers.",
+    "careers.cta": "Send Your Profile",
+    "faq.heading": "Questions before starting?",
+    "faq.one.q": "What does Echonix IT build?",
+    "faq.one.a": "Custom software, websites, AI tools, automations, mobile experiences, cybersecurity improvements, SEO foundations, and consulting roadmaps.",
+    "faq.two.q": "Who do you work with?",
+    "faq.two.a": "Businesses, startups, agencies, and teams in Europe and the United States that need reliable digital systems.",
+    "faq.three.q": "Can you communicate in multiple languages?",
+    "faq.three.a": "Yes. Echonix IT supports English, German, and Albanian communication.",
+    "contact.eyebrow": "Contact",
+    "contact.heading": "Let us design the system your business needs next.",
+    "contact.name": "Name",
+    "contact.namePlaceholder": "Your name",
+    "contact.email": "Email",
+    "contact.emailPlaceholder": "you@company.com",
+    "contact.message": "Project Details",
+    "contact.messagePlaceholder": "Tell us what you want to build",
+    "contact.submit": "Send Request",
+    "contact.phone": "Phone",
+    "contact.market": "Markets",
+    "contact.map": "Google Maps placeholder",
+    "final.heading": "Ready to build intelligent digital infrastructure?",
+    "final.cta": "Contact Echonix IT",
+    "footer.tagline": "Intelligent Solutions. Limitless Impact.",
+    "footer.copy": "\u00A9 2026 Echonix IT. All rights reserved."
+  },
+  de: {
+    pageTitle: "Echonix IT | Intelligente Software, AI Automation & Cybersecurity",
+    "brand.tagline": "Intelligente Losungen",
+    "nav.about": "Uber uns",
+    "nav.services": "Services",
+    "nav.portfolio": "Portfolio",
+    "nav.caseStudies": "Case Studies",
+    "nav.technologies": "Technologien",
+    "nav.industries": "Branchen",
+    "nav.contact": "Kontakt",
+    "hero.eyebrow": "Enterprise Software Studio fur intelligente Systeme",
+    "hero.heading": "Intelligente Losungen. Grenzenlose Wirkung.",
+    "hero.text": "Echonix IT entwickelt sichere Software, AI Automation, individuelle Webplattformen, Mobile Apps und digitale Systeme fur ambitionierte Teams in Europa und den Vereinigten Staaten.",
+    "hero.primary": "Projekt starten",
+    "hero.secondary": "Arbeiten ansehen",
+    "hero.metricServices": "Servicebereiche",
+    "hero.metricMarkets": "Sprachen",
+    "stats.capabilities": "Digitale Kompetenzen",
+    "stats.markets": "Primare Markte",
+    "stats.delivery": "Reaktionsschnelle Lieferung",
+    "stats.focus": "Kundenfokussierte Strategie",
+    "about.eyebrow": "Uber Echonix IT",
+    "about.heading": "Ein moderner Technologiepartner fur Software, AI und digitales Wachstum.",
+    "about.text": "Echonix IT verbindet Engineering, intelligente Automatisierung und Premium Design, um sichere digitale Produkte zu bauen, die schnell, zuverlassig und skalierbar wirken.",
+    "about.pointOne": "Gebaut fur Startups, Unternehmen und Enterprise Teams.",
+    "about.pointTwo": "Fur Europa und die Vereinigten Staaten.",
+    "about.pointThree": "Kommunikation auf Englisch, Deutsch und Albanisch.",
+    "services.eyebrow": "Services",
+    "services.heading": "Enterprise digitale Services, als ein verbundenes System gedacht.",
+    "serviceMeta.benefit": "Vorteil",
+    "serviceMeta.technology": "Technologie",
+    "serviceMeta.process": "Prozess",
+    "serviceMeta.industries": "Branchen",
+    "serviceMeta.cta": "Service besprechen",
+    "services.custom.title": "Individuelle Software",
+    "services.custom.text": "Plattformen, Portale, Dashboards und Business Systeme, die exakt zu Ihren Workflows passen.",
+    "services.custom.benefit": "Architektur, Automatisierung und skalierbare Lieferung",
+    "services.web.title": "Webentwicklung",
+    "services.web.text": "Performante Websites und Web Apps mit Premium UI, SEO Struktur und Conversion Fokus.",
+    "services.web.benefit": "Schnelle, responsive, zugangliche Interfaces",
+    "services.ai.title": "AI Losungen",
+    "services.ai.text": "AI Assistenten, Prognose Tools, Datenpipelines und smarte Produkte mit praktischem Machine Learning.",
+    "services.ai.benefit": "Modelle, Datenverarbeitung und intelligente UX",
+    "services.automation.title": "AI Automation",
+    "services.automation.text": "Workflow Automation, die Tools verbindet, manuelle Arbeit reduziert und Teams schneller macht.",
+    "services.automation.benefit": "Automatisierte Prozesse und smarte Integrationen",
+    "services.mobile.title": "Mobile Apps",
+    "services.mobile.text": "Mobile-first Produkterlebnisse mit klaren Interfaces, starken Flows und stabilem Backend.",
+    "services.mobile.benefit": "Produktdenken von Prototyp bis Launch",
+    "services.ux.title": "UI/UX Design",
+    "services.ux.text": "Premium Produktinterfaces, conversion-fokussierte Flows, Designsysteme und markenkonforme digitale Erlebnisse.",
+    "services.ux.benefit": "Klare User Journeys, polierte Visuals und mehr Vertrauen",
+    "services.security.title": "Cybersecurity",
+    "services.security.text": "Security Audits, Hardening, Authentifizierung und sichere Systemarchitektur.",
+    "services.security.benefit": "Weniger Risiko und sichere Entwicklung",
+    "services.consulting.title": "IT Consulting",
+    "services.consulting.text": "Technische Strategie, Architekturentscheidungen, Produktplanung und Roadmap Support.",
+    "services.consulting.benefit": "Klare technische Richtung vor dem Bau",
+    "services.seo.title": "SEO",
+    "services.seo.text": "Technisches SEO, Metadaten, Content Struktur, Speed Optimierung und suchbereite Websites.",
+    "services.seo.benefit": "Sichtbarkeit, Struktur und messbares Wachstum",
+    "process.eyebrow": "Prozess",
+    "process.heading": "Von Strategie bis Launch folgt jedes Projekt einem klaren Delivery System.",
+    "process.discovery.title": "Discovery",
+    "process.discovery.text": "Wir definieren Ziele, Nutzer, Risiken, Umfang und den richtigen technischen Weg.",
+    "process.design.title": "Design",
+    "process.design.text": "Wir gestalten Premium Interfaces, Flows und Produktarchitektur.",
+    "process.build.title": "Build",
+    "process.build.text": "Wir entwickeln mit sauberem Code, sicherer Logik und skalierbarer Struktur.",
+    "process.launch.title": "Launch",
+    "process.launch.text": "Wir optimieren, deployen, messen und bereiten das Produkt fur Wachstum vor.",
+    "cases.eyebrow": "Case Studies",
+    "cases.heading": "Premium Projektgeschichten fur AI, Software und sichere digitale Ablaufe.",
+    "cases.one.title": "Von manuellen Workflows zu intelligenten Operations",
+    "cases.one.text": "Eine Konzept-Case-Study, die zeigt, wie AI Assistenten, Routing Logik und Dashboards repetitive Arbeit reduzieren.",
+    "cases.two.title": "Ein Full-Stack Portal fur Echtzeit Business Sichtbarkeit",
+    "cases.two.text": "Eine Produktstory mit Fokus auf Analytics, Rollen, Datenbankstruktur und sauberer Enterprise UI.",
+    "cases.three.title": "Security-first Architektur fur wachsende Teams",
+    "cases.three.text": "Ein Systemansatz fur sichere Authentifizierung, kontrollierten Zugriff und auditbereite User Journeys.",
+    "portfolio.eyebrow": "Portfolio",
+    "portfolio.heading": "Ausgewahlte Konzepte fur echte Business Ergebnisse.",
+    "portfolio.filterAll": "Alle",
+    "portfolio.filterSecurity": "Security",
+    "portfolio.ai.title": "AI Automation Command Center",
+    "portfolio.ai.text": "Ein Dashboard Konzept fur automatisierte Workflows, intelligente Weiterleitung und operative Sichtbarkeit.",
+    "portfolio.web.title": "Full-Stack Analytics Platform",
+    "portfolio.web.text": "Eine sichere Webplattform mit Datenansichten, Reporting, Admin Workflows und produktreifer UI.",
+    "portfolio.ecommerce.title": "E-commerce Growth System",
+    "portfolio.ecommerce.text": "Ein conversion-fokussierter Storefront mit Produktflows, Checkout Logik und SEO Struktur.",
+    "portfolio.security.title": "Security-First Client Portal",
+    "portfolio.security.text": "Ein privates Portal mit Authentifizierung, kontrolliertem Zugriff, auditfreundlicher UX und sicherem Datenhandling.",
+    "portfolio.cta": "Ahnliches Projekt anfragen",
+    "tech.eyebrow": "Technologien",
+    "tech.heading": "Ein pragmatischer Stack fur schnelle, sichere und skalierbare digitale Produkte.",
+    "industries.eyebrow": "Branchen",
+    "industries.heading": "Gebaut fur Teams, die Klarheit, Tempo und intelligente Systeme brauchen.",
+    "industries.saas": "SaaS & Digitale Produkte",
+    "industries.retail": "Retail & E-commerce",
+    "industries.finance": "Finance & Operations",
+    "industries.education": "Education & Training",
+    "industries.health": "Healthcare & Services",
+    "industries.startups": "Startups & Agenturen",
+    "testimonials.eyebrow": "Testimonials",
+    "testimonials.heading": "Gestaltet, um ab dem ersten Klick ruhig, prazise und vertrauenswurdig zu wirken.",
+    "testimonials.one": "\"Ein klarer technischer Partner fur Teams, die Software Strategie und Umsetzung an einem Ort brauchen.\"",
+    "testimonials.two": "\"Die Marke wirkt premium, modern und bereit fur ernsthafte B2B Kunden.\"",
+    "testimonials.three": "\"Starke Positionierung fur AI Automation, Webplattformen und sichere digitale Systeme.\"",
+    "blog.eyebrow": "Insights",
+    "blog.heading": "Aktuelle Artikel und technische Notizen.",
+    "blog.one.title": "Wie Unternehmen AI nutzen konnen, ohne Komplexitat zu erhohen",
+    "blog.one.text": "Ein einfacher Rahmen, um Automatisierungen zu finden, die wirklich Zeit sparen.",
+    "blog.two.title": "Warum sichere Architektur vor dem Code beginnt",
+    "blog.two.text": "Gute Systeme werden rund um Zugriff, Daten, Risiken und reale Ablaufe geplant.",
+    "blog.three.title": "Technische SEO Grundlagen fur moderne Websites",
+    "blog.three.text": "Performance, Metadaten, Schema und Struktur sind Teil der Produkterfahrung.",
+    "careers.eyebrow": "Karriere",
+    "careers.heading": "Wir bauen ein fokussiertes Netzwerk aus Kreativen, Engineers und AI Denkern.",
+    "careers.cta": "Profil senden",
+    "faq.heading": "Fragen vor dem Start?",
+    "faq.one.q": "Was baut Echonix IT?",
+    "faq.one.a": "Individuelle Software, Websites, AI Tools, Automatisierungen, mobile Erlebnisse, Cybersecurity Verbesserungen, SEO Grundlagen und Consulting Roadmaps.",
+    "faq.two.q": "Mit wem arbeitet ihr?",
+    "faq.two.a": "Mit Unternehmen, Startups, Agenturen und Teams in Europa und den Vereinigten Staaten, die verlassliche digitale Systeme brauchen.",
+    "faq.three.q": "Konnt ihr mehrsprachig kommunizieren?",
+    "faq.three.a": "Ja. Echonix IT unterstutzt Englisch, Deutsch und Albanisch.",
+    "contact.eyebrow": "Kontakt",
+    "contact.heading": "Lassen Sie uns das System entwerfen, das Ihr Business als nachstes braucht.",
+    "contact.name": "Name",
+    "contact.namePlaceholder": "Ihr Name",
+    "contact.email": "E-Mail",
+    "contact.emailPlaceholder": "sie@firma.com",
+    "contact.message": "Projektdetails",
+    "contact.messagePlaceholder": "Erzahlen Sie uns, was Sie bauen mochten",
+    "contact.submit": "Anfrage senden",
+    "contact.phone": "Telefon",
+    "contact.market": "Markte",
+    "contact.map": "Google Maps Platzhalter",
+    "final.heading": "Bereit, intelligente digitale Infrastruktur zu bauen?",
+    "final.cta": "Echonix IT kontaktieren",
+    "footer.tagline": "Intelligente Losungen. Grenzenlose Wirkung.",
+    "footer.copy": "\u00A9 2026 Echonix IT. Alle Rechte vorbehalten."
+  },
+  sq: {
+    pageTitle: "Echonix IT | Software Inteligjente, AI Automation & Cybersecurity",
+    "brand.tagline": "Zgjidhje Inteligjente",
+    "nav.about": "Rreth nesh",
+    "nav.services": "Sherbimet",
+    "nav.portfolio": "Portfolio",
+    "nav.caseStudies": "Case Studies",
+    "nav.technologies": "Teknologjite",
+    "nav.industries": "Industrite",
+    "nav.contact": "Kontakti",
+    "hero.eyebrow": "Studio software enterprise per sisteme inteligjente",
+    "hero.heading": "Zgjidhje Inteligjente. Ndikim Pa Kufij.",
+    "hero.text": "Echonix IT nderton software te sigurt, AI automation, platforma web te personalizuara, mobile apps dhe sisteme digjitale per ekipe ambicioze ne Europe dhe Shtetet e Bashkuara.",
+    "hero.primary": "Fillo Projektin",
+    "hero.secondary": "Shiko Punet",
+    "hero.metricServices": "Linja Sherbimi",
+    "hero.metricMarkets": "Gjuhe",
+    "stats.capabilities": "Aftesi digjitale",
+    "stats.markets": "Tregje kryesore",
+    "stats.delivery": "Pergjigje e shpejte",
+    "stats.focus": "Strategji me fokus klientin",
+    "about.eyebrow": "Rreth Echonix IT",
+    "about.heading": "Partner modern teknologjik per software, AI dhe rritje digjitale.",
+    "about.text": "Echonix IT bashkon disiplinen inxhinierike, automatizimin inteligjent dhe dizajnin premium per te ndertuar produkte digjitale te sigurta, te shpejta dhe gati per rritje.",
+    "about.pointOne": "Ndertuar per startups, biznese dhe ekipe enterprise.",
+    "about.pointTwo": "Sherben ne Europe dhe Shtetet e Bashkuara.",
+    "about.pointThree": "Komunikim ne Anglisht, Gjermanisht dhe Shqip.",
+    "services.eyebrow": "Sherbimet",
+    "services.heading": "Sherbime digjitale enterprise, te dizajnuara si nje sistem i lidhur.",
+    "serviceMeta.benefit": "Perfitimi",
+    "serviceMeta.technology": "Teknologjia",
+    "serviceMeta.process": "Procesi",
+    "serviceMeta.industries": "Industrite",
+    "serviceMeta.cta": "Diskuto kete sherbim",
+    "services.custom.title": "Software i Personalizuar",
+    "services.custom.text": "Platforma, portale, dashboards dhe sisteme biznesi te ndertuara rreth proceseve tuaja.",
+    "services.custom.benefit": "Arkitekture, automatizim dhe delivery i shkallezueshem",
+    "services.web.title": "Web Development",
+    "services.web.text": "Website dhe aplikacione web me performance te larte, UI premium, strukture SEO dhe fokus konvertimi.",
+    "services.web.benefit": "Interface te shpejta, responsive dhe te qasshme",
+    "services.ai.title": "Zgjidhje AI",
+    "services.ai.text": "AI assistants, mjete parashikimi, data pipelines dhe produkte inteligjente me machine learning praktik.",
+    "services.ai.benefit": "Modele, perpunim te dhenash dhe UX inteligjent",
+    "services.automation.title": "AI Automation",
+    "services.automation.text": "Automatizim workflow qe lidh tools, ul punen manuale dhe i jep ekipeve me shume shpejtesi.",
+    "services.automation.benefit": "Operacione automatike dhe integrime te menqura",
+    "services.mobile.title": "Mobile Apps",
+    "services.mobile.text": "Eksperienca mobile-first me interface te pastra, flows te forta dhe backend te besueshem.",
+    "services.mobile.benefit": "Mendim produkti nga prototipi deri ne launch",
+    "services.ux.title": "UI/UX Design",
+    "services.ux.text": "Interface produkti premium, flows me fokus konvertimi, design systems dhe eksperienca digjitale te lidhura me brand-in.",
+    "services.ux.benefit": "User journeys te qarta, pamje te rafinuara dhe me shume besim",
+    "services.security.title": "Cybersecurity",
+    "services.security.text": "Audite sigurie, hardening, autentikim dhe arkitekture me e sigurt sistemesh.",
+    "services.security.benefit": "Ulja e riskut dhe zhvillim i sigurt",
+    "services.consulting.title": "IT Consulting",
+    "services.consulting.text": "Strategji teknike, vendime arkitekture, planifikim produkti dhe roadmap support.",
+    "services.consulting.benefit": "Drejtim i qarte teknik para ndertimit",
+    "services.seo.title": "SEO",
+    "services.seo.text": "SEO teknik, metadata, strukture content-i, optimizim shpejtesie dhe baza te gatshme per search.",
+    "services.seo.benefit": "Dukshmeri, strukture dhe rritje e matshme",
+    "process.eyebrow": "Procesi",
+    "process.heading": "Nga strategjia deri ne launch, cdo projekt ndjek nje sistem te qarte delivery.",
+    "process.discovery.title": "Discovery",
+    "process.discovery.text": "Definojme qellimet, perdoruesit, riskun, scope dhe rrugen teknike.",
+    "process.design.title": "Design",
+    "process.design.text": "Formesojme interface premium, flows dhe arkitekture produkti.",
+    "process.build.title": "Build",
+    "process.build.text": "Zhvillojme sistemin me kod te paster, logjike te sigurt dhe strukture te shkallezueshme.",
+    "process.launch.title": "Launch",
+    "process.launch.text": "Optimizojme, deploy-ojme, masim dhe pergatisim produktin per rritje.",
+    "cases.eyebrow": "Case Studies",
+    "cases.heading": "Narrativa premium projektesh per AI, software dhe operacione digjitale te sigurta.",
+    "cases.one.title": "Nga workflow manuale ne operacione inteligjente",
+    "cases.one.text": "Nje concept case study qe tregon si AI assistants, routing logic dhe dashboards ulin punen perseritese.",
+    "cases.two.title": "Portal full-stack per dukshmeri biznesi ne kohe reale",
+    "cases.two.text": "Nje histori produkti me fokus analytics, role, strukture databaze dhe UI enterprise te paster.",
+    "cases.three.title": "Arkitekture security-first per ekipe ne rritje",
+    "cases.three.text": "Qasje sistemore per autentikim me te sigurt, qasje te kontrolluar dhe user journeys audit-ready.",
+    "portfolio.eyebrow": "Portfolio",
+    "portfolio.heading": "Koncepte te zgjedhura te ndertuara rreth rezultateve reale te biznesit.",
+    "portfolio.filterAll": "Te gjitha",
+    "portfolio.filterSecurity": "Siguria",
+    "portfolio.ai.title": "AI Automation Command Center",
+    "portfolio.ai.text": "Koncept dashboard per workflow te automatizuara, routing inteligjent dhe dukshmeri operative.",
+    "portfolio.web.title": "Full-Stack Analytics Platform",
+    "portfolio.web.text": "Platforme web e sigurt me pamje te dhenash, raportim, admin workflows dhe UI profesionale.",
+    "portfolio.ecommerce.title": "E-commerce Growth System",
+    "portfolio.ecommerce.text": "Storefront me fokus konvertimi, product flows, checkout logic dhe strukture SEO.",
+    "portfolio.security.title": "Security-First Client Portal",
+    "portfolio.security.text": "Portal privat me autentikim, qasje te kontrolluar, UX audit-friendly dhe trajtim te sigurt te te dhenave.",
+    "portfolio.cta": "Kerko Pune te Ngjashme",
+    "tech.eyebrow": "Teknologjite",
+    "tech.heading": "Stack praktik per produkte digjitale te shpejta, te sigurta dhe te shkallezueshme.",
+    "industries.eyebrow": "Industrite",
+    "industries.heading": "Ndertuar per ekipe qe kane nevoje per qartesi, shpejtesi dhe sisteme inteligjente.",
+    "industries.saas": "SaaS & Produkte Digjitale",
+    "industries.retail": "Retail & E-commerce",
+    "industries.finance": "Finance & Operations",
+    "industries.education": "Education & Training",
+    "industries.health": "Healthcare & Services",
+    "industries.startups": "Startups & Agjenci",
+    "testimonials.eyebrow": "Vleresime",
+    "testimonials.heading": "Dizajnuar te ndihet i qete, preciz dhe i besueshem qe nga klikimi i pare.",
+    "testimonials.one": "\"Partner teknik i paster per ekipe qe duan strategji software dhe zbatim ne nje vend.\"",
+    "testimonials.two": "\"Brand-i ndihet premium, modern dhe gati per kliente serioze B2B.\"",
+    "testimonials.three": "\"Pozicionim i forte per AI automation, platforma web dhe sisteme digjitale te sigurta.\"",
+    "blog.eyebrow": "Insights",
+    "blog.heading": "Artikujt e fundit dhe shenime teknike.",
+    "blog.one.title": "Si mund te perdorin bizneset AI pa shtuar kompleksitet",
+    "blog.one.text": "Nje kornize e thjeshte per te gjetur automatizime qe vertet kursejne kohe.",
+    "blog.two.title": "Pse arkitektura e sigurt fillon para kodit",
+    "blog.two.text": "Sistemet e mira planifikohen rreth qasjes, te dhenave, riskut dhe realitetit operacional.",
+    "blog.three.title": "Bazat teknike SEO per website moderne",
+    "blog.three.text": "Performance, metadata, schema dhe struktura jane pjese e eksperiences se produktit.",
+    "careers.eyebrow": "Karriera",
+    "careers.heading": "Po ndertojme nje rrjet te fokusuar krijuesish, inxhinieresh dhe mendimtaresh AI.",
+    "careers.cta": "Dergo Profilin",
+    "faq.heading": "Pyetje para fillimit?",
+    "faq.one.q": "Cfare nderton Echonix IT?",
+    "faq.one.a": "Software te personalizuar, website, AI tools, automatizime, eksperienca mobile, permiresime cybersecurity, baza SEO dhe consulting roadmaps.",
+    "faq.two.q": "Me ke punoni?",
+    "faq.two.a": "Me biznese, startups, agjenci dhe ekipe ne Europe dhe Shtetet e Bashkuara qe kane nevoje per sisteme digjitale te besueshme.",
+    "faq.three.q": "A komunikoni ne disa gjuhe?",
+    "faq.three.a": "Po. Echonix IT mbeshtet komunikim ne Anglisht, Gjermanisht dhe Shqip.",
+    "contact.eyebrow": "Kontakti",
+    "contact.heading": "Le ta dizajnojme sistemin qe i duhet biznesit tuaj.",
+    "contact.name": "Emri",
+    "contact.namePlaceholder": "Emri juaj",
+    "contact.email": "Email",
+    "contact.emailPlaceholder": "ju@kompania.com",
+    "contact.message": "Detajet e projektit",
+    "contact.messagePlaceholder": "Na tregoni cfare doni te ndertoni",
+    "contact.submit": "Dergo Kerkesen",
+    "contact.phone": "Telefoni",
+    "contact.market": "Tregjet",
+    "contact.map": "Google Maps placeholder",
+    "final.heading": "Gati te ndertojme infrastrukture digjitale inteligjente?",
+    "final.cta": "Kontakto Echonix IT",
+    "footer.tagline": "Zgjidhje Inteligjente. Ndikim Pa Kufij.",
+    "footer.copy": "\u00A9 2026 Echonix IT. Te gjitha te drejtat e rezervuara."
   }
+};
 
-  .nav-menu.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
+function setLanguage(language) {
+  const selected = translations[language] ? language : "en";
+  const dictionary = translations[selected];
 
-  .nav-menu a {
-    width: 100%;
-  }
+  document.documentElement.lang = selected;
+  document.title = dictionary.pageTitle;
 
-  .hero-inner,
-  .split-section,
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.getAttribute("data-i18n");
+    if (dictionary[key]) element.textContent = dictionary[key];
+  });
 
-  .hero-visual {
-    min-height: 440px;
-  }
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+    const key = element.getAttribute("data-i18n-placeholder");
+    if (dictionary[key]) element.setAttribute("placeholder", dictionary[key]);
+  });
 
-  .system-card-main {
-    position: relative;
-    inset: auto;
-    width: 100%;
-  }
+  languageButtons.forEach((button) => {
+    const active = button.dataset.lang === selected;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
 
-  .stats-grid,
-  .process-timeline,
-  .case-grid,
-  .industry-grid,
-  .testimonial-grid,
-  .blog-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .process-timeline article {
-    border-bottom: 1px solid var(--line);
-  }
+  localStorage.setItem("echonixLanguage", selected);
 }
 
-@media (max-width: 640px) {
-  :root {
-    --header: 72px;
-  }
+languageButtons.forEach((button) => {
+  button.addEventListener("click", () => setLanguage(button.dataset.lang));
+});
 
-  .hero,
-  .section,
-  .final-cta,
-  .site-footer,
-  .navbar {
-    width: min(100% - 28px, var(--max));
-  }
+setLanguage(localStorage.getItem("echonixLanguage") || "en");
 
-  .navbar {
-    position: relative;
-  }
-
-  .nav-menu {
-    position: fixed;
-    top: var(--header);
-    left: 0;
-    right: 0;
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    border: 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    border-radius: 0;
-    padding: 8px 14px;
-    background: rgba(5, 11, 22, 0.92);
-    box-shadow: none;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    backdrop-filter: blur(18px);
-  }
-
-  .nav-menu a {
-    width: auto;
-    white-space: nowrap;
-  }
-
-  .brand-text {
-    display: none;
-  }
-
-  .language-btn {
-    min-width: 25px;
-    min-height: 28px;
-    font-size: 0.68rem;
-  }
-
-  .language-switcher {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 3px;
-  }
-
-  .nav-actions {
-    gap: 0;
-  }
-
-  .menu-toggle {
-    position: fixed;
-    top: 17px;
-    right: 14px;
-    z-index: 130;
-    display: block !important;
-    width: 38px;
-    height: 38px;
-  }
-
-  .nav-actions > .menu-toggle {
-    display: none !important;
-  }
-
-  .logo-mark {
-    width: 48px;
-    transform: scale(0.92);
-    transform-origin: left center;
-  }
-
-  .hero {
-    padding-top: 112px;
-  }
-
-  h1 {
-    max-width: 100%;
-    font-size: 2.25rem;
-    line-height: 1.05;
-  }
-
-  .hero-text {
-    font-size: 1rem;
-  }
-
-  .hero-actions,
-  .careers-panel,
-  .site-footer {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .btn,
-  .contact-form .btn {
-    width: 100%;
-  }
-
-  .stats-grid,
-  .service-grid,
-  .portfolio-grid,
-  .process-timeline,
-  .case-grid,
-  .industry-grid,
-  .testimonial-grid,
-  .blog-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .service-points li {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-
-  .process-timeline article {
-    border-right: 0;
-  }
-
-  .tile-a,
-  .tile-b {
-    position: static;
-    margin-top: 14px;
-  }
-
-  .hero-visual {
-    display: grid;
-    min-height: auto;
-  }
-
-  .system-card-main {
-    min-height: 390px;
-  }
-
-  .final-cta-inner {
-    padding: 52px 20px;
-  }
+function closeMenu() {
+  navMenu.classList.remove("active");
+  menuToggles.forEach((toggle) => {
+    toggle.classList.remove("active");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+  document.body.classList.remove("menu-open");
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+menuToggles.forEach((menuToggle) => {
+  menuToggle.addEventListener("click", () => {
+  const isOpen = navMenu.classList.toggle("active");
+    menuToggles.forEach((toggle) => {
+      toggle.classList.toggle("active", isOpen);
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  document.body.classList.toggle("menu-open", isOpen);
+  });
+});
+
+navLinks.forEach((link) => {
+  link.addEventListener("click", closeMenu);
+});
+
+const revealElements = document.querySelectorAll(".reveal");
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.12 }
+);
+
+revealElements.forEach((element) => revealObserver.observe(element));
+
+const counterObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const target = entry.target;
+      const end = Number(target.dataset.counter);
+      const duration = 1200;
+      const start = performance.now();
+
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        target.textContent = Math.floor(progress * end);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+      counterObserver.unobserve(target);
+    });
+  },
+  { threshold: 0.5 }
+);
+
+document.querySelectorAll("[data-counter]").forEach((counter) => counterObserver.observe(counter));
+
+document.querySelectorAll(".filter-btn").forEach((button) => {
+  button.addEventListener("click", () => {
+    const filter = button.dataset.filter;
+    document.querySelectorAll(".filter-btn").forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+
+    document.querySelectorAll(".project-card").forEach((card) => {
+      card.classList.toggle("is-hidden", filter !== "all" && card.dataset.category !== filter);
+    });
+  });
+});
+
+window.addEventListener("load", () => {
+  setTimeout(hideLoader, 250);
+});
+
+const canvas = document.getElementById("signalCanvas");
+const ctx = canvas.getContext("2d");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let width = 0;
+let height = 0;
+let points = [];
+let rafId;
+
+function resizeCanvas() {
+  const ratio = window.devicePixelRatio || 1;
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width * ratio;
+  canvas.height = height * ratio;
+  canvas.style.width = `${width}px`;
+  canvas.style.height = `${height}px`;
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+  const count = Math.min(96, Math.max(42, Math.floor((width * height) / 18000)));
+  points = Array.from({ length: count }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    vx: (Math.random() - 0.5) * 0.38,
+    vy: (Math.random() - 0.5) * 0.38,
+    r: Math.random() * 1.7 + 0.8
+  }));
 }
 
-.floating-menu-toggle {
-  display: none;
+function drawSignals() {
+  ctx.clearRect(0, 0, width, height);
+
+  points.forEach((point) => {
+    point.x += point.vx;
+    point.y += point.vy;
+    if (point.x < 0 || point.x > width) point.vx *= -1;
+    if (point.y < 0 || point.y > height) point.vy *= -1;
+  });
+
+  for (let i = 0; i < points.length; i += 1) {
+    for (let j = i + 1; j < points.length; j += 1) {
+      const a = points[i];
+      const b = points[j];
+      const distance = Math.hypot(a.x - b.x, a.y - b.y);
+      if (distance < 150) {
+        const opacity = (1 - distance / 150) * 0.24;
+        ctx.strokeStyle = `rgba(34, 211, 238, ${opacity})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  points.forEach((point) => {
+    const gradient = ctx.createRadialGradient(point.x, point.y, 0, point.x, point.y, point.r * 5);
+    gradient.addColorStop(0, "rgba(34, 211, 238, 0.9)");
+    gradient.addColorStop(1, "rgba(37, 99, 235, 0)");
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, point.r * 5, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  if (!reduceMotion) rafId = requestAnimationFrame(drawSignals);
 }
 
-@media (max-width: 900px) {
-  .floating-menu-toggle {
-    display: block !important;
-    position: fixed !important;
-    top: 17px !important;
-    right: 14px !important;
-    z-index: 9999 !important;
-    border-color: rgba(34, 211, 238, 0.65);
-    background: rgba(5, 16, 31, 0.92);
-  }
-}
+resizeCanvas();
+drawSignals();
+
+window.addEventListener("resize", () => {
+  cancelAnimationFrame(rafId);
+  resizeCanvas();
+  drawSignals();
+});

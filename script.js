@@ -1,374 +1,1386 @@
-const menuToggle = document.querySelector(".menu-toggle");
-const navMenu = document.querySelector(".nav-menu");
-const navLinks = document.querySelectorAll(".nav-menu a");
-const languageButtons = document.querySelectorAll(".language-btn");
-
-const translations = {
-  en: {
-    pageTitle: "Erblin Limani | Full-Stack Developer & AI/ML Programmer",
-    "nav.about": "About",
-    "nav.skills": "Skills",
-    "nav.projects": "Projects",
-    "nav.services": "Services",
-    "nav.contact": "Contact",
-    "hero.eyebrow": "Full-stack systems, intelligent tools, production-ready code",
-    "hero.title": "Full-Stack Developer | AI & Machine Learning Programmer",
-    "hero.intro": "I build high-performance web applications, reliable backend systems, AI-powered tools, and machine learning solutions that turn complex ideas into polished digital products.",
-    "hero.projectsButton": "View Projects",
-    "hero.contactButton": "Contact Me",
-    "terminal.frontend": "Frontend: HTML, CSS, JavaScript",
-    "terminal.backend": "Backend: PHP, SQL, MySQL",
-    "terminal.ai": "AI/ML: Python, automation, models",
-    "terminal.status": "building the future",
-    "about.eyebrow": "About",
-    "about.heading": "Developer With A Product Mindset",
-    "about.paragraphOne": "I am a full-stack developer and AI/ML Python programmer based in Prishtina, Kosovo. I focus on building scalable, practical, and elegant software across responsive interfaces, backend logic, database architecture, automation tools, and intelligent systems powered by data.",
-    "about.paragraphTwo": "I am currently studying AI and Programming at Kolegji AAB, after completing three years at the professional school IAAP \"Jonuz Zejnullahu\" in Viti. With five years of programming experience and skills across HTML, CSS, JavaScript, PHP, SQL, MySQL, C++, Java, Python, AI, and Machine Learning, I bring both engineering depth and creative problem-solving to every project.",
-    "stats.programming": "Years Programming",
-    "stats.aab": "AI & Programming",
-    "stats.school": "Years Professional School",
-    "stats.location": "Prishtina, Kosovo",
-    "skills.eyebrow": "Skills",
-    "skills.heading": "Modern Stack For Web, Backend, And AI",
-    "skills.programming": "Programming",
-    "skills.machineLearning": "Machine Learning",
-    "skills.aiAutomation": "AI Automation",
-    "skills.dataProcessing": "Data Processing",
-    "projects.eyebrow": "Projects",
-    "projects.heading": "Featured Builds",
-    "projects.chatbot.title": "AI Chatbot",
-    "projects.chatbot.description": "Conversational assistant with intent handling, context-aware responses, and automation-ready integrations.",
-    "projects.dashboard.title": "Full-Stack Dashboard",
-    "projects.dashboard.description": "Responsive analytics dashboard with secure backend logic, dynamic data views, and database reporting.",
-    "projects.ecommerce.title": "E-commerce Website",
-    "projects.ecommerce.description": "Online storefront with product browsing, cart flow, user management, and clean purchase experience.",
-    "projects.prediction.title": "Machine Learning Prediction App",
-    "projects.prediction.description": "Prediction interface using trained models, data processing pipelines, and clear result presentation.",
-    "projects.viewButton": "View Project",
-    "services.eyebrow": "Services",
-    "services.heading": "Technical Services",
-    "services.web.title": "Web Development",
-    "services.web.description": "Responsive, polished websites and web applications built for performance and usability.",
-    "services.backend.title": "Backend Development",
-    "services.backend.description": "Server-side systems, authentication flows, APIs, and business logic that scale cleanly.",
-    "services.automation.title": "AI Automation",
-    "services.automation.description": "Smart workflows that reduce repetitive work and connect AI tools to real operations.",
-    "services.ml.title": "Machine Learning Models",
-    "services.ml.description": "Data preparation, model development, evaluation, and prediction-focused applications.",
-    "services.database.title": "Database Design",
-    "services.database.description": "Structured SQL and MySQL database design for reliable storage, querying, and reporting.",
-    "contact.eyebrow": "Contact",
-    "contact.heading": "Let's Build Something Intelligent",
-    "contact.nameLabel": "Name",
-    "contact.namePlaceholder": "Your name",
-    "contact.emailLabel": "Email",
-    "contact.emailPlaceholder": "your@email.com",
-    "contact.messageLabel": "Message",
-    "contact.messagePlaceholder": "Tell me about your project",
-    "contact.sendButton": "Send Message",
-    "contact.panelText": "Available for web applications, backend systems, automation workflows, machine learning tools, and custom AI-powered products.",
-    "contact.locationLabel": "Location",
-    "contact.educationLabel": "Education",
-    "contact.educationValue": "Kolegji AAB, AI & Programming",
-    "contact.languagesLabel": "Languages",
-    "contact.languagesValue": "Albanian, English, German",
-    "footer.copy": "\u00A9 2026 Erblin Limani. Full-Stack Developer & AI/ML Programmer."
-  },
-  sq: {
-    pageTitle: "Erblin Limani | Full-Stack Developer & Programues AI/ML",
-    "nav.about": "Rreth meje",
-    "nav.skills": "Aftesite",
-    "nav.projects": "Projektet",
-    "nav.services": "Sherbimet",
-    "nav.contact": "Kontakti",
-    "hero.eyebrow": "Sisteme full-stack, mjete inteligjente, kod gati per prodhim",
-    "hero.title": "Full-Stack Developer | Programues i AI & Machine Learning",
-    "hero.intro": "Ndertoj aplikacione web me performance te larte, sisteme backend te besueshme, mjete me AI dhe zgjidhje machine learning qe i kthejne idete komplekse ne produkte digjitale profesionale.",
-    "hero.projectsButton": "Shiko Projektet",
-    "hero.contactButton": "Me Kontakto",
-    "terminal.frontend": "Frontend: HTML, CSS, JavaScript",
-    "terminal.backend": "Backend: PHP, SQL, MySQL",
-    "terminal.ai": "AI/ML: Python, automatizim, modele",
-    "terminal.status": "duke ndertuar te ardhmen",
-    "about.eyebrow": "Rreth meje",
-    "about.heading": "Developer me mendesi produkti",
-    "about.paragraphOne": "Jam full-stack developer dhe programues Python per AI/ML me baze ne Prishtine, Kosove. Fokusohem ne ndertimin e softuerit te shkallezueshem, praktik dhe elegant, nga interfacet responsive deri te backend-i, databazat, automatizimi dhe sistemet inteligjente te bazuara ne te dhena.",
-    "about.paragraphTwo": "Aktualisht studioj AI dhe Programim ne Kolegjin AAB, pasi kam perfunduar tre vite ne shkollen profesionale IAAP \"Jonuz Zejnullahu\" ne Viti. Me pese vite eksperience ne programim dhe aftesi ne HTML, CSS, JavaScript, PHP, SQL, MySQL, C++, Java, Python, AI dhe Machine Learning, sjell thellesi inxhinierike dhe zgjidhje kreative ne cdo projekt.",
-    "stats.programming": "Vite Programim",
-    "stats.aab": "AI & Programim",
-    "stats.school": "Vite Shkolle Profesionale",
-    "stats.location": "Prishtine, Kosove",
-    "skills.eyebrow": "Aftesite",
-    "skills.heading": "Teknologji Moderne Per Web, Backend Dhe AI",
-    "skills.programming": "Programim",
-    "skills.machineLearning": "Machine Learning",
-    "skills.aiAutomation": "Automatizim me AI",
-    "skills.dataProcessing": "Perpunim i te dhenave",
-    "projects.eyebrow": "Projektet",
-    "projects.heading": "Projekte te Zgjedhura",
-    "projects.chatbot.title": "AI Chatbot",
-    "projects.chatbot.description": "Asistent bisedues me menaxhim te qellimeve, pergjigje me kontekst dhe integrime te gatshme per automatizim.",
-    "projects.dashboard.title": "Dashboard Full-Stack",
-    "projects.dashboard.description": "Dashboard analitik responsive me backend te sigurt, pamje dinamike te te dhenave dhe raporte nga databaza.",
-    "projects.ecommerce.title": "Website E-commerce",
-    "projects.ecommerce.description": "Dyqan online me produkte, shporte blerjeje, menaxhim perdoruesish dhe pervoje te paster blerjeje.",
-    "projects.prediction.title": "Aplikacion Parashikimi me Machine Learning",
-    "projects.prediction.description": "Interface parashikimi me modele te trajnuara, pipeline per perpunim te te dhenave dhe prezantim te qarte te rezultateve.",
-    "projects.viewButton": "Shiko Projektin",
-    "services.eyebrow": "Sherbimet",
-    "services.heading": "Sherbime Teknike",
-    "services.web.title": "Web Development",
-    "services.web.description": "Website dhe aplikacione web responsive, profesionale dhe te ndertuara per performance e perdorim te lehte.",
-    "services.backend.title": "Backend Development",
-    "services.backend.description": "Sisteme server-side, autentikim, API dhe logjike biznesi qe shkallezohet paster.",
-    "services.automation.title": "Automatizim me AI",
-    "services.automation.description": "Workflow inteligjente qe ulin punen perseritese dhe lidhin mjetet AI me procese reale.",
-    "services.ml.title": "Modele Machine Learning",
-    "services.ml.description": "Pergatitje te dhenash, zhvillim modelesh, vleresim dhe aplikacione te fokusuara ne parashikim.",
-    "services.database.title": "Dizajn Databaze",
-    "services.database.description": "Dizajn i strukturuar me SQL dhe MySQL per ruajtje, kerkime dhe raportim te besueshem.",
-    "contact.eyebrow": "Kontakti",
-    "contact.heading": "Te Ndertojme Dicka Inteligjente",
-    "contact.nameLabel": "Emri",
-    "contact.namePlaceholder": "Emri juaj",
-    "contact.emailLabel": "Email",
-    "contact.emailPlaceholder": "emaili@juaj.com",
-    "contact.messageLabel": "Mesazhi",
-    "contact.messagePlaceholder": "Me trego per projektin tend",
-    "contact.sendButton": "Dergo Mesazhin",
-    "contact.panelText": "I disponueshem per aplikacione web, sisteme backend, automatizim, mjete machine learning dhe produkte te personalizuara me AI.",
-    "contact.locationLabel": "Lokacioni",
-    "contact.educationLabel": "Edukimi",
-    "contact.educationValue": "Kolegji AAB, AI & Programim",
-    "contact.languagesLabel": "Gjuhet",
-    "contact.languagesValue": "Shqip, Anglisht, Gjermanisht",
-    "footer.copy": "\u00A9 2026 Erblin Limani. Full-Stack Developer & Programues AI/ML."
-  },
-  de: {
-    pageTitle: "Erblin Limani | Full-Stack Developer & AI/ML Programmierer",
-    "nav.about": "Uber mich",
-    "nav.skills": "Fahigkeiten",
-    "nav.projects": "Projekte",
-    "nav.services": "Services",
-    "nav.contact": "Kontakt",
-    "hero.eyebrow": "Full-Stack-Systeme, intelligente Tools, produktionsreifer Code",
-    "hero.title": "Full-Stack Developer | AI & Machine Learning Programmierer",
-    "hero.intro": "Ich entwickle leistungsstarke Webanwendungen, zuverlassige Backend-Systeme, KI-gestutzte Tools und Machine-Learning-Losungen, die komplexe Ideen in professionelle digitale Produkte verwandeln.",
-    "hero.projectsButton": "Projekte ansehen",
-    "hero.contactButton": "Kontakt aufnehmen",
-    "terminal.frontend": "Frontend: HTML, CSS, JavaScript",
-    "terminal.backend": "Backend: PHP, SQL, MySQL",
-    "terminal.ai": "AI/ML: Python, Automatisierung, Modelle",
-    "terminal.status": "die Zukunft bauen",
-    "about.eyebrow": "Uber mich",
-    "about.heading": "Developer mit Produkt-Mindset",
-    "about.paragraphOne": "Ich bin Full-Stack Developer und Python-Programmierer fur AI/ML mit Sitz in Prishtina, Kosovo. Mein Fokus liegt auf skalierbarer, praktischer und eleganter Software, von responsiven Oberflachen uber Backend-Logik und Datenbanken bis zu Automatisierung und intelligenten datenbasierten Systemen.",
-    "about.paragraphTwo": "Aktuell studiere ich AI und Programmierung am Kolegji AAB, nachdem ich drei Jahre an der Berufsschule IAAP \"Jonuz Zejnullahu\" in Viti abgeschlossen habe. Mit funf Jahren Programmiererfahrung und Kenntnissen in HTML, CSS, JavaScript, PHP, SQL, MySQL, C++, Java, Python, AI und Machine Learning bringe ich technisches Denken und kreative Problemlosung in jedes Projekt ein.",
-    "stats.programming": "Jahre Programmierung",
-    "stats.aab": "AI & Programmierung",
-    "stats.school": "Jahre Berufsschule",
-    "stats.location": "Prishtina, Kosovo",
-    "skills.eyebrow": "Fahigkeiten",
-    "skills.heading": "Moderner Stack Fur Web, Backend Und AI",
-    "skills.programming": "Programmierung",
-    "skills.machineLearning": "Machine Learning",
-    "skills.aiAutomation": "AI-Automatisierung",
-    "skills.dataProcessing": "Datenverarbeitung",
-    "projects.eyebrow": "Projekte",
-    "projects.heading": "Ausgewahlte Projekte",
-    "projects.chatbot.title": "AI Chatbot",
-    "projects.chatbot.description": "Konversationsassistent mit Intent-Erkennung, kontextbezogenen Antworten und integrationsbereiter Automatisierung.",
-    "projects.dashboard.title": "Full-Stack Dashboard",
-    "projects.dashboard.description": "Responsives Analyse-Dashboard mit sicherer Backend-Logik, dynamischen Datenansichten und Datenbank-Reporting.",
-    "projects.ecommerce.title": "E-Commerce Website",
-    "projects.ecommerce.description": "Online-Shop mit Produktansicht, Warenkorb, Benutzerverwaltung und sauberem Einkaufserlebnis.",
-    "projects.prediction.title": "Machine-Learning Prediction App",
-    "projects.prediction.description": "Vorhersage-Interface mit trainierten Modellen, Datenverarbeitungspipelines und klarer Ergebnisdarstellung.",
-    "projects.viewButton": "Projekt ansehen",
-    "services.eyebrow": "Services",
-    "services.heading": "Technische Services",
-    "services.web.title": "Web Development",
-    "services.web.description": "Responsive, professionelle Websites und Webanwendungen, gebaut fur Performance und Benutzerfreundlichkeit.",
-    "services.backend.title": "Backend Development",
-    "services.backend.description": "Serverseitige Systeme, Authentifizierung, APIs und Business-Logik, die sauber skaliert.",
-    "services.automation.title": "AI-Automatisierung",
-    "services.automation.description": "Intelligente Workflows, die wiederkehrende Arbeit reduzieren und AI-Tools mit echten Prozessen verbinden.",
-    "services.ml.title": "Machine-Learning-Modelle",
-    "services.ml.description": "Datenaufbereitung, Modellentwicklung, Evaluation und vorhersageorientierte Anwendungen.",
-    "services.database.title": "Datenbankdesign",
-    "services.database.description": "Strukturiertes SQL- und MySQL-Design fur zuverlassige Speicherung, Abfragen und Reporting.",
-    "contact.eyebrow": "Kontakt",
-    "contact.heading": "Lass Uns Etwas Intelligentes Bauen",
-    "contact.nameLabel": "Name",
-    "contact.namePlaceholder": "Dein Name",
-    "contact.emailLabel": "E-Mail",
-    "contact.emailPlaceholder": "deine@email.com",
-    "contact.messageLabel": "Nachricht",
-    "contact.messagePlaceholder": "Erzahl mir von deinem Projekt",
-    "contact.sendButton": "Nachricht senden",
-    "contact.panelText": "Verfugbar fur Webanwendungen, Backend-Systeme, Automatisierung, Machine-Learning-Tools und individuelle AI-Produkte.",
-    "contact.locationLabel": "Standort",
-    "contact.educationLabel": "Ausbildung",
-    "contact.educationValue": "Kolegji AAB, AI & Programmierung",
-    "contact.languagesLabel": "Sprachen",
-    "contact.languagesValue": "Albanisch, Englisch, Deutsch",
-    "footer.copy": "\u00A9 2026 Erblin Limani. Full-Stack Developer & AI/ML Programmierer."
-  }
-};
-
-function setLanguage(language) {
-  const selectedLanguage = translations[language] ? language : "en";
-  const dictionary = translations[selectedLanguage];
-
-  document.documentElement.lang = selectedLanguage;
-  document.title = dictionary.pageTitle;
-
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const key = element.getAttribute("data-i18n");
-    if (dictionary[key]) {
-      element.textContent = dictionary[key];
-    }
-  });
-
-  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
-    const key = element.getAttribute("data-i18n-placeholder");
-    if (dictionary[key]) {
-      element.setAttribute("placeholder", dictionary[key]);
-    }
-  });
-
-  languageButtons.forEach((button) => {
-    const isActive = button.dataset.lang === selectedLanguage;
-    button.classList.toggle("active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-  });
-
-  localStorage.setItem("portfolioLanguage", selectedLanguage);
+:root {
+  --black: #07111f;
+  --navy: #0f172a;
+  --panel: rgba(9, 24, 45, 0.72);
+  --panel-strong: rgba(12, 28, 52, 0.92);
+  --line: rgba(68, 151, 255, 0.18);
+  --line-strong: rgba(34, 211, 238, 0.48);
+  --blue: #2563eb;
+  --cyan: #22d3ee;
+  --violet: #8b5cf6;
+  --white: #ffffff;
+  --muted: #9fb0c8;
+  --soft: #d8e7ff;
+  --shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+  --glow: 0 0 42px rgba(34, 211, 238, 0.22);
+  --radius: 18px;
+  --max: 1180px;
+  --header: 78px;
+  --font: "Space Grotesk", "Sora", "Manrope", "Inter", "Segoe UI", system-ui, sans-serif;
 }
 
-languageButtons.forEach((button) => {
-  button.addEventListener("click", () => setLanguage(button.dataset.lang));
-});
-
-setLanguage(localStorage.getItem("portfolioLanguage") || "en");
-
-menuToggle.addEventListener("click", () => {
-  const isOpen = navMenu.classList.toggle("active");
-  menuToggle.classList.toggle("active", isOpen);
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
-  document.body.classList.toggle("menu-open", isOpen);
-});
-
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    navMenu.classList.remove("active");
-    menuToggle.classList.remove("active");
-    menuToggle.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("menu-open");
-  });
-});
-
-const revealElements = document.querySelectorAll(".reveal");
-
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.16 }
-);
-
-revealElements.forEach((element) => revealObserver.observe(element));
-
-const canvas = document.getElementById("neuralCanvas");
-const ctx = canvas.getContext("2d");
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-let width = 0;
-let height = 0;
-let particles = [];
-let animationFrame;
-
-function resizeCanvas() {
-  const ratio = window.devicePixelRatio || 1;
-  width = window.innerWidth;
-  height = window.innerHeight;
-  canvas.width = width * ratio;
-  canvas.height = height * ratio;
-  canvas.style.width = `${width}px`;
-  canvas.style.height = `${height}px`;
-  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-
-  const count = Math.min(90, Math.max(38, Math.floor((width * height) / 18000)));
-  particles = Array.from({ length: count }, () => ({
-    x: Math.random() * width,
-    y: Math.random() * height,
-    vx: (Math.random() - 0.5) * 0.45,
-    vy: (Math.random() - 0.5) * 0.45,
-    radius: Math.random() * 1.8 + 0.8
-  }));
+* {
+  box-sizing: border-box;
 }
 
-function drawNetwork() {
-  ctx.clearRect(0, 0, width, height);
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header);
+}
 
-  particles.forEach((particle) => {
-    particle.x += particle.vx;
-    particle.y += particle.vy;
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--white);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(37, 99, 235, 0.24), transparent 32%),
+    radial-gradient(circle at 82% 18%, rgba(34, 211, 238, 0.14), transparent 30%),
+    linear-gradient(180deg, #050b16 0%, var(--black) 42%, #050912 100%);
+  font-family: var(--font);
+  overflow-x: hidden;
+}
 
-    if (particle.x < 0 || particle.x > width) particle.vx *= -1;
-    if (particle.y < 0 || particle.y > height) particle.vy *= -1;
-  });
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 92px 92px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.78), transparent 88%);
+}
 
-  for (let i = 0; i < particles.length; i += 1) {
-    for (let j = i + 1; j < particles.length; j += 1) {
-      const a = particles[i];
-      const b = particles[j];
-      const distance = Math.hypot(a.x - b.x, a.y - b.y);
+body.menu-open {
+  overflow: hidden;
+}
 
-      if (distance < 145) {
-        const opacity = 1 - distance / 145;
-        ctx.strokeStyle = `rgba(59, 215, 255, ${opacity * 0.24})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.stroke();
-      }
-    }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: #050b16;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+}
+
+.loader-mark,
+.logo-mark {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 38px;
+}
+
+.loader-mark span,
+.logo-mark span {
+  position: absolute;
+  left: 0;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.45);
+}
+
+.loader-mark span:nth-child(1),
+.logo-mark span:nth-child(1) {
+  top: 0;
+  left: 14px;
+  width: 40px;
+}
+
+.loader-mark span:nth-child(2),
+.logo-mark span:nth-child(2) {
+  top: 11px;
+  width: 28px;
+}
+
+.loader-mark span:nth-child(3),
+.logo-mark span:nth-child(3) {
+  top: 22px;
+  left: 8px;
+  width: 34px;
+}
+
+.loader-mark span:nth-child(4),
+.logo-mark span:nth-child(4) {
+  top: 33px;
+  left: 14px;
+  width: 40px;
+}
+
+.logo-mark::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 10px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 8px 11px 0 var(--cyan), 0 22px 0 var(--blue);
+}
+
+.logo-mark.mini {
+  transform: scale(1.25);
+}
+
+.signal-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header);
+  border-bottom: 1px solid var(--line);
+  background: rgba(5, 11, 22, 0.78);
+  backdrop-filter: blur(22px);
+}
+
+.navbar {
+  width: min(100% - 40px, var(--max));
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-width: fit-content;
+}
+
+.brand-text {
+  display: grid;
+  gap: 3px;
+}
+
+.brand-text strong {
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+}
+
+.brand-text small {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus-visible {
+  color: var(--white);
+  background: rgba(37, 99, 235, 0.14);
+  outline: none;
+}
+
+.nav-actions,
+.language-switcher {
+  display: flex;
+  align-items: center;
+}
+
+.nav-actions {
+  gap: 10px;
+}
+
+.language-switcher {
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.language-btn {
+  display: inline-grid;
+  min-width: 34px;
+  min-height: 30px;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.language-btn.active,
+.language-btn:hover,
+.language-btn:focus-visible {
+  color: #03101a;
+  background: linear-gradient(135deg, var(--cyan), #ffffff);
+  outline: none;
+}
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  cursor: pointer;
+}
+
+.floating-menu-toggle {
+  position: fixed;
+  top: 17px;
+  right: 14px;
+  z-index: 140;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 4px auto;
+  background: var(--white);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.hero,
+.section,
+.final-cta,
+.site-footer {
+  width: min(100% - 40px, var(--max));
+  margin: 0 auto;
+}
+
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--header));
+  display: grid;
+  align-items: center;
+  padding: 88px 0 72px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.wave-grid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6%;
+  height: 220px;
+  background:
+    radial-gradient(ellipse at 50% 90%, rgba(34, 211, 238, 0.38), transparent 55%),
+    repeating-linear-gradient(8deg, transparent 0 30px, rgba(34, 211, 238, 0.18) 31px, transparent 32px),
+    repeating-linear-gradient(172deg, transparent 0 44px, rgba(37, 99, 235, 0.16) 45px, transparent 46px);
+  transform: perspective(720px) rotateX(58deg);
+  transform-origin: bottom;
+  animation: wavePulse 7s ease-in-out infinite;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.5;
+}
+
+.orb-a {
+  width: 220px;
+  height: 220px;
+  left: 2%;
+  top: 16%;
+  background: rgba(37, 99, 235, 0.35);
+}
+
+.orb-b {
+  width: 180px;
+  height: 180px;
+  right: 8%;
+  bottom: 16%;
+  background: rgba(34, 211, 238, 0.28);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.hero-inner > *,
+.hero-copy {
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  color: var(--cyan);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+h1 {
+  max-width: 760px;
+  font-size: clamp(3rem, 7vw, 6.6rem);
+  line-height: 0.92;
+}
+
+h2 {
+  max-width: 860px;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  line-height: 1.02;
+}
+
+h3 {
+  font-size: 1.16rem;
+  line-height: 1.25;
+}
+
+.hero-text {
+  max-width: 690px;
+  margin: 26px 0 0;
+  color: var(--soft);
+  font-size: clamp(1.04rem, 1.6vw, 1.24rem);
+  line-height: 1.75;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.btn {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0 22px;
+  font-weight: 850;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.btn-primary {
+  color: #03101a;
+  background: linear-gradient(135deg, var(--cyan), #ffffff);
+  box-shadow: 0 18px 45px rgba(34, 211, 238, 0.26);
+}
+
+.btn-secondary {
+  color: var(--white);
+  border-color: var(--line-strong);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.trust-row span,
+.tech-cloud span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 12px;
+  color: var(--soft);
+  background: rgba(255, 255, 255, 0.045);
+  font-size: 0.86rem;
+}
+
+.hero-visual {
+  position: relative;
+  min-height: 520px;
+}
+
+.system-card,
+.glass-panel,
+.service-card,
+.project-card,
+.industry-card,
+.quote-card,
+.blog-card,
+.info-card,
+.map-placeholder,
+.stats-grid article {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
+    var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+
+.system-card-main {
+  position: absolute;
+  inset: 34px 0 auto auto;
+  width: min(100%, 470px);
+  min-height: 430px;
+  overflow: hidden;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  padding: 16px;
+}
+
+.card-top span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cyan);
+}
+
+.card-top span:nth-child(2) {
+  background: var(--blue);
+}
+
+.card-top span:nth-child(3) {
+  background: var(--violet);
+}
+
+.card-top small {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.orbit-system {
+  position: relative;
+  height: 360px;
+  display: grid;
+  place-items: center;
+}
+
+.orbit-system::before,
+.orbit-system::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: 50%;
+  animation: rotateRing 18s linear infinite;
+}
+
+.orbit-system::before {
+  width: 250px;
+  height: 250px;
+}
+
+.orbit-system::after {
+  width: 330px;
+  height: 180px;
+  transform: rotate(-18deg);
+}
+
+.core-node {
+  display: grid;
+  width: 132px;
+  height: 132px;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.2), rgba(37, 99, 235, 0.08));
+  box-shadow: var(--glow);
+}
+
+.orbit-node {
+  position: absolute;
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--cyan);
+  background: rgba(7, 17, 31, 0.86);
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.node-1 { top: 54px; left: 86px; }
+.node-2 { top: 72px; right: 86px; }
+.node-3 { bottom: 62px; left: 108px; }
+.node-4 { bottom: 84px; right: 92px; }
+
+.metric-tile {
+  position: absolute;
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  background: rgba(5, 16, 31, 0.82);
+  box-shadow: var(--glow);
+}
+
+.metric-tile strong {
+  color: var(--cyan);
+  font-size: 2rem;
+}
+
+.metric-tile span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.tile-a { left: 0; top: 72px; }
+.tile-b { right: 20px; bottom: 20px; }
+
+.section {
+  padding: 96px 0;
+}
+
+.section-heading,
+.section-label {
+  margin-bottom: 40px;
+}
+
+.split-section {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.about-panel,
+.careers-panel {
+  padding: 30px;
+}
+
+.about-panel p,
+.service-card p,
+.project-card p,
+.process-timeline p,
+.quote-card p,
+.blog-card p,
+.faq-list p,
+.contact-info strong,
+.site-footer span,
+.site-footer p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.about-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.about-list span {
+  border-left: 2px solid var(--cyan);
+  padding-left: 14px;
+  color: var(--soft);
+}
+
+.stats-grid,
+.service-grid,
+.case-grid,
+.portfolio-grid,
+.industry-grid,
+.testimonial-grid,
+.blog-grid,
+.contact-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stats-grid article {
+  padding: 24px;
+}
+
+.stats-grid strong {
+  display: block;
+  color: var(--cyan);
+  font-size: 2.4rem;
+}
+
+.stats-grid span {
+  color: var(--muted);
+}
+
+.service-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.service-card {
+  min-height: 470px;
+  padding: 24px;
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+
+.service-card:hover,
+.project-card:hover,
+.industry-card:hover,
+.blog-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--line-strong);
+  background: var(--panel-strong);
+}
+
+.icon-line {
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 22px;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--cyan);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.service-card p {
+  min-height: 78px;
+}
+
+.service-points {
+  display: grid;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-points li {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 10px;
+  align-items: start;
+  border-top: 1px solid rgba(68, 151, 255, 0.12);
+  padding-top: 10px;
+  color: var(--soft);
+  font-size: 0.86rem;
+}
+
+.service-points span {
+  color: var(--cyan);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.service-points strong {
+  color: var(--soft);
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.service-cta {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 22px;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.55);
+  color: var(--cyan);
+  font-weight: 850;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.service-cta:hover,
+.service-cta:focus-visible {
+  color: var(--white);
+  border-color: var(--white);
+  outline: none;
+}
+
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.process-timeline article {
+  min-height: 230px;
+  padding: 28px;
+  border-right: 1px solid var(--line);
+}
+
+.process-timeline article:last-child {
+  border-right: 0;
+}
+
+.process-timeline span {
+  display: inline-block;
+  margin-bottom: 28px;
+  color: var(--cyan);
+  font-weight: 900;
+}
+
+.case-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.case-card {
+  min-height: 270px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+    var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+  transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+.case-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--line-strong);
+}
+
+.case-card span {
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.case-card h3 {
+  margin-top: 46px;
+}
+
+.case-card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.filter-btn {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0 16px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.045);
+  cursor: pointer;
+}
+
+.filter-btn.active,
+.filter-btn:hover,
+.filter-btn:focus-visible {
+  color: #03101a;
+  background: var(--cyan);
+  outline: none;
+}
+
+.portfolio-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.project-card,
+.blog-card,
+.quote-card {
+  padding: 22px;
+  transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+.project-card.is-hidden {
+  display: none;
+}
+
+.mockup {
+  display: grid;
+  min-height: 160px;
+  margin-bottom: 22px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(34, 211, 238, 0.36), transparent 28%),
+    repeating-linear-gradient(155deg, transparent 0 34px, rgba(34, 211, 238, 0.12) 35px, transparent 36px),
+    rgba(5, 14, 29, 0.72);
+}
+
+.mockup span {
+  color: var(--white);
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.project-card a {
+  display: inline-flex;
+  margin-top: 16px;
+  color: var(--cyan);
+  font-weight: 850;
+}
+
+.tech-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tech-cloud span {
+  padding: 13px 16px;
+}
+
+.industry-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.industry-card {
+  min-height: 156px;
+  padding: 24px;
+  transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+.industry-card span,
+.blog-card span {
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.industry-card h3 {
+  margin-top: 30px;
+}
+
+.testimonial-grid,
+.blog-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.quote-card p {
+  margin-top: 0;
+  font-size: 1.08rem;
+}
+
+.quote-card span {
+  color: var(--cyan);
+  font-weight: 850;
+}
+
+.blog-card h3 {
+  margin-top: 18px;
+}
+
+.careers-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-list details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.faq-list summary {
+  color: var(--white);
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.contact-grid {
+  grid-template-columns: 1.08fr 0.92fr;
+}
+
+.contact-form {
+  display: grid;
+  gap: 12px;
+  padding: 28px;
+}
+
+.contact-form label {
+  color: var(--white);
+  font-weight: 850;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 15px 16px;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.045);
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.12);
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form .btn {
+  width: fit-content;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.contact-info {
+  display: grid;
+  gap: 14px;
+}
+
+.info-card {
+  display: grid;
+  gap: 6px;
+  padding: 20px;
+}
+
+.info-card span {
+  color: var(--cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.map-placeholder {
+  min-height: 190px;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 55% 40%, rgba(34, 211, 238, 0.16), transparent 40%),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    var(--panel);
+  background-size: auto, 32px 32px, 32px 32px, auto;
+}
+
+.map-placeholder span {
+  color: var(--muted);
+}
+
+.map-placeholder strong {
+  color: var(--white);
+}
+
+.final-cta {
+  padding: 90px 0 110px;
+}
+
+.final-cta-inner {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 30px;
+  padding: 70px 30px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.26), transparent 42%),
+    rgba(255, 255, 255, 0.045);
+  box-shadow: var(--shadow);
+}
+
+.final-cta h2 {
+  margin: 28px 0;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  padding: 30px 0 44px;
+}
+
+.site-footer div {
+  display: grid;
+  gap: 4px;
+}
+
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes wavePulse {
+  0%, 100% { opacity: 0.56; transform: perspective(720px) rotateX(58deg) translateY(0); }
+  50% { opacity: 0.9; transform: perspective(720px) rotateX(58deg) translateY(-12px); }
+}
+
+@keyframes rotateRing {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1120px) {
+  .nav-menu {
+    gap: 0;
   }
 
-  particles.forEach((particle) => {
-    const gradient = ctx.createRadialGradient(
-      particle.x,
-      particle.y,
-      0,
-      particle.x,
-      particle.y,
-      particle.radius * 4
-    );
-    gradient.addColorStop(0, "rgba(50, 245, 200, 0.92)");
-    gradient.addColorStop(1, "rgba(143, 107, 255, 0)");
+  .nav-menu a {
+    padding: 0 9px;
+  }
 
-    ctx.fillStyle = gradient;
-    ctx.beginPath();
-    ctx.arc(particle.x, particle.y, particle.radius * 4, 0, Math.PI * 2);
-    ctx.fill();
-  });
-
-  if (!prefersReducedMotion) {
-    animationFrame = requestAnimationFrame(drawNetwork);
+  .service-grid,
+  .case-grid,
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-resizeCanvas();
-drawNetwork();
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: block;
+  }
 
-window.addEventListener("resize", () => {
-  cancelAnimationFrame(animationFrame);
-  resizeCanvas();
-  drawNetwork();
-});
+  .nav-menu {
+    position: fixed;
+    top: var(--header);
+    left: 20px;
+    right: 20px;
+    display: grid;
+    gap: 6px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px;
+    background: rgba(5, 11, 22, 0.96);
+    box-shadow: var(--shadow);
+    transform: translateY(-18px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  }
+
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-menu a {
+    width: 100%;
+  }
+
+  .hero-inner,
+  .split-section,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    min-height: 440px;
+  }
+
+  .system-card-main {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+
+  .stats-grid,
+  .process-timeline,
+  .case-grid,
+  .industry-grid,
+  .testimonial-grid,
+  .blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .process-timeline article {
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header: 72px;
+  }
+
+  .hero,
+  .section,
+  .final-cta,
+  .site-footer,
+  .navbar {
+    width: min(100% - 28px, var(--max));
+  }
+
+  .navbar {
+    position: relative;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: var(--header);
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    padding: 8px 14px;
+    background: rgba(5, 11, 22, 0.92);
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    backdrop-filter: blur(18px);
+  }
+
+  .nav-menu a {
+    width: auto;
+    white-space: nowrap;
+  }
+
+  .brand-text {
+    display: none;
+  }
+
+  .language-btn {
+    min-width: 25px;
+    min-height: 28px;
+    font-size: 0.68rem;
+  }
+
+  .language-switcher {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 3px;
+  }
+
+  .nav-actions {
+    gap: 0;
+  }
+
+  .menu-toggle {
+    position: fixed;
+    top: 17px;
+    right: 14px;
+    z-index: 130;
+    display: block !important;
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-actions > .menu-toggle {
+    display: none !important;
+  }
+
+  .logo-mark {
+    width: 48px;
+    transform: scale(0.92);
+    transform-origin: left center;
+  }
+
+  .hero {
+    padding-top: 112px;
+  }
+
+  h1 {
+    max-width: 100%;
+    font-size: 2.25rem;
+    line-height: 1.05;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+  }
+
+  .hero-actions,
+  .careers-panel,
+  .site-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .btn,
+  .contact-form .btn {
+    width: 100%;
+  }
+
+  .stats-grid,
+  .service-grid,
+  .portfolio-grid,
+  .process-timeline,
+  .case-grid,
+  .industry-grid,
+  .testimonial-grid,
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-points li {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .process-timeline article {
+    border-right: 0;
+  }
+
+  .tile-a,
+  .tile-b {
+    position: static;
+    margin-top: 14px;
+  }
+
+  .hero-visual {
+    display: grid;
+    min-height: auto;
+  }
+
+  .system-card-main {
+    min-height: 390px;
+  }
+
+  .final-cta-inner {
+    padding: 52px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.floating-menu-toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .floating-menu-toggle {
+    display: block !important;
+    position: fixed !important;
+    top: 17px !important;
+    right: 14px !important;
+    z-index: 9999 !important;
+    border-color: rgba(34, 211, 238, 0.65);
+    background: rgba(5, 16, 31, 0.92);
+  }
+}
